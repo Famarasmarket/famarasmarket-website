@@ -27,11 +27,13 @@
       <nav class="nav">
         <a href="../index.html">Home</a>
         <a href="shop.html">Shop</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
       </nav>
 
-      <button class="cart-button" type="button" onclick="showCart()">
+      <button
+        class="cart-button"
+        type="button"
+        onclick="showCart()"
+      >
         🛒 Cart <span id="cart-count">0</span>
       </button>
 
@@ -39,15 +41,19 @@
   </header>
 
 
-  <!-- SHOP PAGE -->
+  <!-- SHOP -->
   <main>
 
     <section class="page-header">
       <div class="container">
 
-        <p class="welcome">FAMARA'SMARKET</p>
+        <p class="welcome">
+          FAMARA'SMARKET
+        </p>
 
-        <h1>Shop Our Products</h1>
+        <h1>
+          Shop Our Products
+        </h1>
 
         <p>
           Discover quality products at great prices.
@@ -57,7 +63,7 @@
     </section>
 
 
-    <!-- SEARCH AND FILTER -->
+    <!-- SEARCH -->
     <section class="shop-tools">
       <div class="container">
 
@@ -68,11 +74,25 @@
           oninput="filterProducts()"
         >
 
-        <select id="category-filter" onchange="filterProducts()">
-          <option value="all">All Categories</option>
-          <option value="Beauty">Beauty</option>
-          <option value="Fashion">Fashion</option>
-          <option value="Home">Home</option>
+        <select
+          id="category-filter"
+          onchange="filterProducts()"
+        >
+          <option value="all">
+            All Categories
+          </option>
+
+          <option value="Beauty">
+            Beauty
+          </option>
+
+          <option value="Fashion">
+            Fashion
+          </option>
+
+          <option value="Home">
+            Home
+          </option>
         </select>
 
       </div>
@@ -83,7 +103,10 @@
     <section class="products-section">
       <div class="container">
 
-        <div class="products-grid" id="products-grid">
+        <div
+          class="products-grid"
+          id="products-grid"
+        >
 
 
           <!-- NIVEA SUNSCREEN -->
@@ -218,11 +241,17 @@
     </section>
 
 
-    <!-- CART MESSAGE -->
-    <section class="cart-message" id="cart-message">
+    <!-- CART -->
+    <section
+      class="cart-message"
+      id="cart-message"
+    >
+
       <div class="container">
 
-        <h2>Your Cart</h2>
+        <h2>
+          Your Cart
+        </h2>
 
         <div id="cart-items">
           Your cart is empty.
@@ -232,7 +261,17 @@
           Total: Le 0
         </p>
 
+
+        <!-- CHECKOUT BUTTON -->
+        <a
+          href="checkout.html"
+          class="button"
+        >
+          Proceed to Checkout
+        </a>
+
       </div>
+
     </section>
 
   </main>
@@ -240,6 +279,7 @@
 
   <!-- FOOTER -->
   <footer class="footer">
+
     <div class="container">
 
       <p>
@@ -251,6 +291,7 @@
       </p>
 
     </div>
+
   </footer>
 
 
