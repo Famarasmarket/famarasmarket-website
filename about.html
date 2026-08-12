@@ -1,1 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <meta
+    name="description"
+    content="Learn more about Famara'smarket, our values and our commitment to convenient online shopping across Sierra Leone."
+  >
+
+  <meta name="theme-color" content="#198754">
+
+  <title>About | Famara'smarket</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    .about-page {
+      padding: 60px 0 80px;
+    }
+
+    .about-hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #f5f3ff, #fdf2f8);
+      border-radius: 20px;
+      margin-bottom: 45px;
+    }
+
+    .about-hero h1 {
+      color: #171717;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      margin-bottom: 15px;
+    }
+
+    .about-hero p {
+      max-width: 700px;
+      margin: auto;
+      color: #737373;
+      font-size: 1.1rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .about-card {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 18px;
+      padding: 30px 22px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    .about-card span {
+      display: block;
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+
+    .about-card h2 {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
+
+    .about-card p {
+      color: #737373;
+    }
+
+    .about-content {
+      max-width: 850px;
+      margin: 50px auto 0;
+    }
+
+    .about-content h2 {
+      margin-bottom: 12px;
+    }
+
+    .about-content p {
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .about-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      background: #7c3aed;
+      color: #ffffff;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .about-button:hover {
+      background: #5b21b6;
+    }
+
+    @media (max-width: 800px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container header-content">
+
+      <a href="../index.html" class="logo">
+        Famara'smarket
+      </a>
+
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="testimonials.html">Reviews</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <a href="shop.html" class="cart-button">
+        🛒 Shop
+      </a>
+
+    </div>
+  </header>
+
+  <main class="about-page">
+
+    <div class="container">
+
+      <section class="about-hero">
+
+        <h1>About Famara'smarket</h1>
+
+        <p>
+          Welcome to Famara'smarket — your trusted online
+          marketplace for quality products, great value and
+          convenient shopping across Sierra Leone.
+        </p>
+
+      </section>
+
+      <section>
+
+        <h2 style="text-align:center;">
+          What We Stand For
+        </h2>
+
+        <div class="about-grid">
+
+          <div class="about-card">
+            <span>✨</span>
+            <h2>Quality</h2>
+            <p>
+              We aim to provide products that our customers
+              can trust and enjoy.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <span>💰</span>
+            <h2>Great Value</h2>
+            <p>
+              We work to offer useful products at competitive
+              prices.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <span>🚚</span>
+            <h2>Convenience</h2>
+            <p>
+              We make shopping easier with convenient ordering
+              and delivery options.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+      <section class="about-content">
+
+        <h2>Our Mission</h2>
+
+        <p>
+          Our mission is to make online shopping simple,
+          convenient and accessible for customers while
+          providing a growing selection of products.
+        </p>
+
+        <h2>Shopping With Us</h2>
+
+        <p>
+          Customers can browse products, add items to their
+          cart, choose a delivery area, select a payment
+          method and place an order conveniently.
+        </p>
+
+        <p>
+          We also provide order tracking so customers can
+          keep their Order ID and follow the progress of
+          their order.
+        </p>
+
+        <a href="shop.html" class="about-button">
+          🛍️ Start Shopping
+        </a>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+
+    <div class="container">
+
+      <p>
+        © <span id="year"></span>
+        Famara'smarket. All rights reserved.
+      </p>
+
+      <p>
+        Quality products. Great value. Easy shopping.
+      </p>
+
+    </div>
+
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
