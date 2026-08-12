@@ -44,7 +44,8 @@ function updateCart() {
   );
 
   const totalPrice = cart.reduce(
-    (total, product) => total + product.price * product.quantity,
+    (total, product) =>
+      total + product.price * product.quantity,
     0
   );
 
@@ -58,12 +59,8 @@ function updateCart() {
     } else {
       cartItems.innerHTML = cart.map(product => `
         <div class="cart-item">
-
           <strong>${product.name}</strong>
-
-          <p>
-            Le ${product.price} × ${product.quantity}
-          </p>
+          <p>Le ${product.price} × ${product.quantity}</p>
 
           <button
             type="button"
@@ -71,7 +68,6 @@ function updateCart() {
           >
             Remove
           </button>
-
         </div>
       `).join("");
     }
@@ -135,10 +131,10 @@ function filterProducts() {
   products.forEach(product => {
 
     const name =
-      product.dataset.name.toLowerCase();
+      (product.dataset.name || "").toLowerCase();
 
     const category =
-      product.dataset.category;
+      product.dataset.category || "";
 
     const matchesSearch =
       name.includes(searchText);
@@ -168,7 +164,6 @@ function updateCheckout() {
   }
 
   if (cart.length === 0) {
-
     checkoutItems.innerHTML =
       "Your cart is empty.";
 
@@ -183,15 +178,10 @@ function updateCheckout() {
   checkoutItems.innerHTML =
     cart.map(product => `
       <div class="checkout-item">
-
-        <strong>
-          ${product.name}
-        </strong>
-
+        <strong>${product.name}</strong>
         <p>
           Le ${product.price} × ${product.quantity}
         </p>
-
       </div>
     `).join("");
 
@@ -222,11 +212,9 @@ if (checkoutForm) {
       event.preventDefault();
 
       if (cart.length === 0) {
-
         alert(
           "Your cart is empty. Please add a product first."
         );
-
         return;
       }
 
@@ -236,18 +224,15 @@ if (checkoutForm) {
           "customer-name"
         ).value.trim();
 
-
       const phone =
         document.getElementById(
           "customer-phone"
         ).value.trim();
 
-
       const address =
         document.getElementById(
           "customer-address"
         ).value.trim();
-
 
       const payment =
         document.getElementById(
@@ -264,7 +249,8 @@ if (checkoutForm) {
       const total =
         cart.reduce(
           (sum, product) =>
-            sum + product.price * product.quantity,
+            sum +
+            product.price * product.quantity,
           0
         );
 
@@ -298,7 +284,6 @@ Thank you!`;
       const whatsappNumber =
         "23299568485";
 
-
       const whatsappURL =
         "https://wa.me/" +
         whatsappNumber +
@@ -306,8 +291,11 @@ Thank you!`;
         encodeURIComponent(message);
 
 
-      window.location.href =
-        whatsappURL;
+      // Open WhatsApp
+      window.open(
+        whatsappURL,
+        "_blank"
+      );
 
     }
   );
