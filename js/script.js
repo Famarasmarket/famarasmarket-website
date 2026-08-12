@@ -34,206 +34,138 @@ function addToCart(name, price) {
 
 // UPDATE CART
 function updateCart() {
-
-  const cartCount =
-    document.getElementById("cart-count");
-
-  const cartItems =
-    document.getElementById("cart-items");
-
-  const cartTotal =
-    document.getElementById("cart-total");
-
+  const cartCount = document.getElementById("cart-count");
+  const cartItems = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
 
   const totalQuantity = cart.reduce(
-    (total, product) =>
-      total + product.quantity,
+    (total, product) => total + product.quantity,
     0
   );
-
 
   const totalPrice = cart.reduce(
-    (total, product) =>
-      total +
-      product.price * product.quantity,
+    (total, product) => total + product.price * product.quantity,
     0
   );
 
-
   if (cartCount) {
-    cartCount.textContent =
-      totalQuantity;
+    cartCount.textContent = totalQuantity;
   }
-
 
   if (cartItems) {
-
     if (cart.length === 0) {
-
-      cartItems.innerHTML =
-        "Your cart is empty.";
-
+      cartItems.innerHTML = "Your cart is empty.";
     } else {
+      cartItems.innerHTML = cart.map(product => `
+        <div class="cart-item">
 
-      cartItems.innerHTML =
-        cart.map(product => `
+          <strong>${product.name}</strong>
 
-          <div class="cart-item">
+          <p>
+            Le ${product.price} × ${product.quantity}
+          </p>
 
-            <strong>
-              ${product.name}
-            </strong>
+          <button
+            type="button"
+            onclick="removeFromCart('${product.name}')"
+          >
+            Remove
+          </button>
 
-            <p>
-              Le ${product.price}
-              ×
-              ${product.quantity}
-            </p>
-
-            <button
-              type="button"
-              onclick="removeFromCart('${product.name}')"
-            >
-              Remove
-            </button>
-
-          </div>
-
-        `).join("");
-
+        </div>
+      `).join("");
     }
-
   }
-
 
   if (cartTotal) {
-
-    cartTotal.textContent =
-      `Total: Le ${totalPrice}`;
-
+    cartTotal.textContent = `Total: Le ${totalPrice}`;
   }
 
-
   updateCheckout();
-
 }
 
 
 // REMOVE FROM CART
 function removeFromCart(name) {
-
   cart = cart.filter(
-    product =>
-      product.name !== name
+    product => product.name !== name
   );
 
   saveCart();
-
   updateCart();
-
 }
 
 
 // SHOW CART
 function showCart() {
-
   const cartMessage =
-    document.getElementById(
-      "cart-message"
-    );
+    document.getElementById("cart-message");
 
   if (cartMessage) {
-
     cartMessage.scrollIntoView({
       behavior: "smooth"
     });
-
   }
 
   updateCart();
-
 }
 
 
 // FILTER PRODUCTS
 function filterProducts() {
-
   const searchInput =
-    document.getElementById(
-      "product-search"
-    );
+    document.getElementById("product-search");
 
   const categoryFilter =
-    document.getElementById(
-      "category-filter"
-    );
+    document.getElementById("category-filter");
 
   const products =
-    document.querySelectorAll(
-      ".product-card"
-    );
-
+    document.querySelectorAll(".product-card");
 
   const searchText =
     searchInput
       ? searchInput.value.toLowerCase()
       : "";
 
-
   const selectedCategory =
     categoryFilter
       ? categoryFilter.value
       : "all";
 
-
   products.forEach(product => {
 
     const name =
-      product.dataset.name
-        .toLowerCase();
+      product.dataset.name.toLowerCase();
 
     const category =
       product.dataset.category;
 
-
     const matchesSearch =
       name.includes(searchText);
-
 
     const matchesCategory =
       selectedCategory === "all" ||
       category === selectedCategory;
 
-
     product.style.display =
-      matchesSearch &&
-      matchesCategory
+      matchesSearch && matchesCategory
         ? ""
         : "none";
-
   });
-
 }
 
 
 // UPDATE CHECKOUT
 function updateCheckout() {
-
   const checkoutItems =
-    document.getElementById(
-      "checkout-items"
-    );
+    document.getElementById("checkout-items");
 
   const checkoutTotal =
-    document.getElementById(
-      "checkout-total"
-    );
-
+    document.getElementById("checkout-total");
 
   if (!checkoutItems) {
     return;
   }
-
 
   if (cart.length === 0) {
 
@@ -248,10 +180,8 @@ function updateCheckout() {
     return;
   }
 
-
   checkoutItems.innerHTML =
     cart.map(product => `
-
       <div class="checkout-item">
 
         <strong>
@@ -259,42 +189,29 @@ function updateCheckout() {
         </strong>
 
         <p>
-          Le ${product.price}
-          ×
-          ${product.quantity}
+          Le ${product.price} × ${product.quantity}
         </p>
 
       </div>
-
     `).join("");
-
 
   const totalPrice =
     cart.reduce(
       (total, product) =>
-        total +
-        product.price *
-        product.quantity,
+        total + product.price * product.quantity,
       0
     );
 
-
   if (checkoutTotal) {
-
     checkoutTotal.textContent =
       `Total: Le ${totalPrice}`;
-
   }
-
 }
 
 
-// CHECKOUT FORM
+// CHECKOUT → WHATSAPP
 const checkoutForm =
-  document.getElementById(
-    "checkout-form"
-  );
-
+  document.getElementById("checkout-form");
 
 if (checkoutForm) {
 
@@ -304,7 +221,6 @@ if (checkoutForm) {
 
       event.preventDefault();
 
-
       if (cart.length === 0) {
 
         alert(
@@ -312,26 +228,25 @@ if (checkoutForm) {
         );
 
         return;
-
       }
 
 
       const name =
         document.getElementById(
           "customer-name"
-        ).value;
+        ).value.trim();
 
 
       const phone =
         document.getElementById(
           "customer-phone"
-        ).value;
+        ).value.trim();
 
 
       const address =
         document.getElementById(
           "customer-address"
-        ).value;
+        ).value.trim();
 
 
       const payment =
@@ -342,52 +257,60 @@ if (checkoutForm) {
 
       const orderItems =
         cart.map(product =>
-          `${product.name} x${product.quantity}`
-        ).join(", ");
+          `• ${product.name} x${product.quantity} — Le ${product.price * product.quantity}`
+        ).join("\n");
 
 
       const total =
         cart.reduce(
           (sum, product) =>
-            sum +
-            product.price *
-            product.quantity,
+            sum + product.price * product.quantity,
           0
         );
 
 
-      alert(
-        `Thank you, ${name}!
+      const message =
+`Hello Famara'smarket! 👋
 
-Your order has been received.
+I would like to place an order.
 
-Products:
-${orderItems}
+👤 Customer:
+${name}
 
-Total: Le ${total}
-
-Payment:
-${payment}
-
-Phone:
+📞 Phone:
 ${phone}
 
-Delivery:
-${address}`
-      );
+📍 Delivery Address:
+${address}
+
+🛍️ Order:
+${orderItems}
+
+💰 Total:
+Le ${total}
+
+💳 Payment Method:
+${payment}
+
+Thank you!`;
 
 
-      cart = [];
+      const whatsappNumber =
+        "23299568485";
 
-      saveCart();
 
-      updateCart();
+      const whatsappURL =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(message);
 
-      checkoutForm.reset();
+
+      window.location.href =
+        whatsappURL;
 
     }
   );
-
 }
 
 
