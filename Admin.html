@@ -1,1 +1,4036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Famara'smarket Admin Dashboard">
+<meta name="theme-color" content="#198754">
+<title>Admin Dashboard | Famara'smarket</title>
 
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f6f8;
+  color:#171717;
+  line-height:1.5
+}
+
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+
+:root{
+  --green:#198754;
+  --dark:#111827;
+  --light:#f4f6f8;
+  --border:#e5e7eb;
+  --muted:#6b7280;
+  --red:#dc3545;
+  --orange:#f59e0b
+}
+
+/* ==============================
+   LOGIN
+============================== */
+
+#adminLogin{
+  position:fixed;
+  inset:0;
+  background:#f4f6f8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:10000
+}
+
+.login-box{
+  width:100%;
+  max-width:420px;
+  background:white;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 10px 35px rgba(0,0,0,.12)
+}
+
+.login-brand{
+  text-align:center;
+  font-size:28px;
+  font-weight:900;
+  color:#198754;
+  margin-bottom:7px
+}
+
+.login-subtitle{
+  text-align:center;
+  color:#6b7280;
+  margin-bottom:25px
+}
+
+.login-error{
+  display:none;
+  background:#ffe5e5;
+  color:#a00000;
+  padding:12px;
+  border-radius:9px;
+  margin-bottom:15px;
+  font-weight:700
+}
+
+.login-box input{
+  width:100%;
+  padding:13px;
+  border:1px solid #d7d7d7;
+  border-radius:10px;
+  margin-bottom:15px;
+  outline:none
+}
+
+.login-box input:focus{
+  border-color:#198754
+}
+
+.login-button{
+  width:100%;
+  border:0;
+  background:#198754;
+  color:white;
+  padding:13px;
+  border-radius:10px;
+  font-weight:800
+}
+
+.logout-button{
+  border:0;
+  background:#ffe5e5;
+  color:#a00000;
+  padding:8px 11px;
+  border-radius:8px;
+  font-weight:800
+}
+
+/* ==============================
+   LAYOUT
+============================== */
+
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:250px;
+  background:#111827;
+  color:white;
+  padding:20px 14px;
+  overflow-y:auto;
+  z-index:2000
+}
+
+.brand{
+  font-size:23px;
+  font-weight:900;
+  padding:10px 12px 25px;
+  color:#35b879
+}
+
+.brand span{color:white}
+
+.nav-btn{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#d1d5db;
+  text-align:left;
+  padding:13px 14px;
+  border-radius:10px;
+  margin-bottom:5px;
+  font-weight:700
+}
+
+.nav-btn:hover,
+.nav-btn.active{
+  background:#198754;
+  color:white
+}
+
+.main{
+  margin-left:250px;
+  min-height:100vh
+}
+
+.topbar{
+  height:70px;
+  background:white;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+  position:sticky;
+  top:0;
+  z-index:1000
+}
+
+.menu-button{
+  display:none;
+  border:0;
+  background:#198754;
+  color:white;
+  padding:9px 12px;
+  border-radius:9px
+}
+
+.admin-title{
+  font-weight:900;
+  font-size:20px
+}
+
+.content{
+  padding:25px;
+  max-width:1500px;
+  margin:auto
+}
+
+.page{display:none}
+.page.active{display:block}
+
+.page-heading{
+  margin-bottom:20px
+}
+
+.page-heading h1{
+  font-size:28px
+}
+
+.page-heading p{
+  color:var(--muted)
+}
+
+/* ==============================
+   CARDS
+============================== */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:25px
+}
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 3px 15px rgba(0,0,0,.04)
+}
+
+.stat-label{
+  color:var(--muted);
+  font-weight:700;
+  font-size:14px
+}
+
+.stat-value{
+  font-size:28px;
+  font-weight:900;
+  margin-top:7px
+}
+
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px
+}
+
+.panel{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
+  overflow:hidden
+}
+
+.panel h2{
+  font-size:20px;
+  margin-bottom:15px
+}
+
+/* ==============================
+   TABLES
+============================== */
+
+.table-wrap{
+  width:100%;
+  overflow-x:auto
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:650px
+}
+
+th,td{
+  padding:12px 10px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+  vertical-align:top
+}
+
+th{
+  background:#f8fafc;
+  font-size:13px
+}
+
+td{
+  font-size:14px
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:800;
+  background:#e8f7ee;
+  color:#198754
+}
+
+.badge.pending{
+  background:#fff4d6;
+  color:#856404
+}
+
+.badge.cancelled{
+  background:#ffe5e5;
+  color:#a00000
+}
+
+.badge.processing{
+  background:#e5f0ff;
+  color:#1456a0
+}
+
+/* ==============================
+   BUTTONS
+============================== */
+
+.btn{
+  border:0;
+  border-radius:9px;
+  padding:9px 13px;
+  font-weight:800
+}
+
+.btn-primary{
+  background:#198754;
+  color:white
+}
+
+.btn-secondary{
+  background:#e9ecef;
+  color:#222
+}
+
+.btn-danger{
+  background:#ffe3e3;
+  color:#a00000
+}
+
+.btn-warning{
+  background:#fff0c2;
+  color:#6b4f00
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px
+}
+
+/* ==============================
+   FORMS
+============================== */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px
+}
+
+.form-group{
+  margin-bottom:15px
+}
+
+.form-group.full{
+  grid-column:1/-1
+}
+
+.form-group label{
+  display:block;
+  font-weight:800;
+  margin-bottom:6px
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #d7d7d7;
+  border-radius:10px;
+  outline:none;
+  background:white
+}
+
+.form-group textarea{
+  min-height:100px;
+  resize:vertical
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  border-color:#198754
+}
+
+.search{
+  width:100%;
+  padding:13px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin-bottom:15px;
+  outline:none
+}
+
+.search:focus{
+  border-color:#198754
+}
+
+.notice{
+  padding:13px 15px;
+  border-radius:10px;
+  background:#fff4d6;
+  color:#664d03;
+  margin-bottom:15px;
+  font-weight:700
+}
+
+.success{
+  padding:13px 15px;
+  border-radius:10px;
+  background:#e8f7ee;
+  color:#146c43;
+  margin-bottom:15px;
+  font-weight:700
+}
+
+.empty{
+  padding:30px;
+  text-align:center;
+  color:var(--muted)
+}
+
+.small{
+  color:var(--muted);
+  font-size:13px
+}
+
+/* ==============================
+   CHART
+============================== */
+
+.chart{
+  height:220px;
+  display:flex;
+  align-items:flex-end;
+  gap:8px;
+  padding:15px 5px 5px;
+  border-bottom:1px solid var(--border)
+}
+
+.bar{
+  flex:1;
+  min-width:15px;
+  background:#198754;
+  border-radius:6px 6px 0 0;
+  position:relative
+}
+
+.bar span{
+  position:absolute;
+  bottom:-22px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:10px;
+  white-space:nowrap
+}
+
+/* ==============================
+   DELIVERY
+============================== */
+
+.delivery-group{
+  border:1px solid var(--border);
+  border-radius:14px;
+  margin-bottom:15px;
+  overflow:hidden
+}
+
+.delivery-title{
+  padding:14px;
+  background:#f8fafc;
+  font-weight:900
+}
+
+.delivery-row{
+  padding:14px;
+  border-top:1px solid var(--border)
+}
+
+.delivery-row-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
+}
+
+.delivery-row label{
+  display:block;
+  font-size:12px;
+  font-weight:800;
+  color:var(--muted);
+  margin-bottom:5px
+}
+
+.delivery-row input{
+  width:100%;
+  padding:10px;
+  border:1px solid var(--border);
+  border-radius:8px
+}
+
+/* ==============================
+   MODALS
+============================== */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:5000;
+  padding:15px;
+  overflow-y:auto
+}
+
+.modal-box{
+  max-width:700px;
+  margin:30px auto;
+  background:white;
+  border-radius:18px;
+  padding:22px
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px
+}
+
+.close{
+  border:0;
+  background:#eee;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  font-size:22px
+}
+
+.product-image-preview{
+  max-width:150px;
+  max-height:150px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-top:8px
+}
+
+.mobile-overlay{
+  display:none
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media(max-width:1000px){
+
+  .cards{
+    grid-template-columns:repeat(2,1fr)
+  }
+
+}
+
+@media(max-width:750px){
+
+  .sidebar{
+    transform:translateX(-100%);
+    transition:.25s
+  }
+
+  .sidebar.open{
+    transform:translateX(0)
+  }
+
+  .main{
+    margin-left:0
+  }
+
+  .menu-button{
+    display:block
+  }
+
+  .mobile-overlay.show{
+    display:block;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.4);
+    z-index:1500
+  }
+
+  .topbar{
+    padding:0 14px
+  }
+
+  .content{
+    padding:15px
+  }
+
+  .cards{
+    grid-template-columns:1fr 1fr;
+    gap:10px
+  }
+
+  .grid-2,
+  .form-grid{
+    grid-template-columns:1fr
+  }
+
+  .form-group.full{
+    grid-column:auto
+  }
+
+}
+
+@media(max-width:450px){
+
+  .cards{
+    grid-template-columns:1fr
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- ==============================
+     ADMIN LOGIN
+============================== -->
+
+<div id="adminLogin">
+
+  <div class="login-box">
+
+    <div class="login-brand">
+      Famara'smarket
+    </div>
+
+    <div class="login-subtitle">
+      Admin Dashboard Login
+    </div>
+
+    <div class="login-error" id="loginError">
+      Incorrect username or password.
+    </div>
+
+    <form id="adminLoginForm">
+
+      <input
+        type="text"
+        id="adminUsername"
+        placeholder="Username"
+        autocomplete="username"
+        required
+      >
+
+      <input
+        type="password"
+        id="adminPassword"
+        placeholder="Password"
+        autocomplete="current-password"
+        required
+      >
+
+      <button
+        type="submit"
+        class="login-button"
+      >
+        🔐 Login to Dashboard
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- ==============================
+     MOBILE OVERLAY
+============================== -->
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- ==============================
+     SIDEBAR
+============================== -->
+
+<aside class="sidebar" id="sidebar">
+
+  <div class="brand">
+    Famara's<span>market</span>
+  </div>
+
+  <button class="nav-btn active" data-page="dashboard">
+    📊 Dashboard
+  </button>
+
+  <button class="nav-btn" data-page="products">
+    🛍️ Products
+  </button>
+
+  <button class="nav-btn" data-page="orders">
+    📦 Orders
+  </button>
+
+  <button class="nav-btn" data-page="customers">
+    👥 Customers
+  </button>
+
+  <button class="nav-btn" data-page="payments">
+    💳 Payments
+  </button>
+
+  <button class="nav-btn" data-page="delivery">
+    🚚 Delivery
+  </button>
+
+  <button class="nav-btn" data-page="reviews">
+    ⭐ Reviews
+  </button>
+
+  <button class="nav-btn" data-page="messages">
+    💬 Messages
+  </button>
+
+  <button class="nav-btn" data-page="settings">
+    ⚙️ Settings
+  </button>
+
+  <button class="nav-btn" id="viewShopButton">
+    🌐 View Shop
+  </button>
+
+  <button class="nav-btn" id="logoutButton">
+    🚪 Logout
+  </button>
+
+</aside>
+
+<!-- ==============================
+     MAIN
+============================== -->
+
+<main class="main">
+
+  <header class="topbar">
+
+    <button class="menu-button" id="menuButton">
+      ☰
+    </button>
+
+    <div class="admin-title">
+      Admin Panel
+    </div>
+
+    <div class="small">
+      Famara'smarket
+    </div>
+
+  </header>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+
+    <section class="page active" id="page-dashboard">
+
+      <div class="page-heading">
+        <h1>Dashboard</h1>
+        <p>Manage your Famara'smarket business from here.</p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="stat-label">Total Products</div>
+          <div class="stat-value" id="statProducts">0</div>
+        </div>
+
+        <div class="card">
+          <div class="stat-label">Total Orders</div>
+          <div class="stat-value" id="statOrders">0</div>
+        </div>
+
+        <div class="card">
+          <div class="stat-label">Customers</div>
+          <div class="stat-value" id="statCustomers">0</div>
+        </div>
+
+        <div class="card">
+          <div class="stat-label">Revenue</div>
+          <div class="stat-value" id="statRevenue">Le 0</div>
+        </div>
+
+      </div>
+
+      <div class="grid-2">
+
+        <div class="panel">
+
+          <h2>📈 Sales Overview</h2>
+
+          <div class="chart" id="salesChart"></div>
+
+        </div>
+
+        <div class="panel">
+
+          <h2>📦 Recent Orders</h2>
+
+          <div id="dashboardOrders"></div>
+
+        </div>
+
+      </div>
+
+      <div class="grid-2">
+
+        <div class="panel">
+
+          <h2>👥 Recent Customers</h2>
+
+          <div id="dashboardCustomers"></div>
+
+        </div>
+
+        <div class="panel">
+
+          <h2>⭐ Recent Reviews</h2>
+
+          <div id="dashboardReviews"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- PRODUCTS -->
+
+    <section class="page" id="page-products">
+
+      <div class="page-heading">
+
+        <h1>Products</h1>
+
+        <p>Add, edit and delete products shown in your Shop.</p>
+
+      </div>
+
+      <div class="panel">
+
+        <div class="actions" style="margin-bottom:15px">
+
+          <button class="btn btn-primary" id="addProductButton">
+            ➕ Add Product
+          </button>
+
+          <button class="btn btn-secondary" id="refreshProductsButton">
+            🔄 Refresh
+          </button>
+
+        </div>
+
+        <input
+          class="search"
+          id="productSearch"
+          placeholder="🔎 Search products..."
+        >
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Featured</th>
+                <th>Actions</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="productsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ORDERS -->
+
+    <section class="page" id="page-orders">
+
+      <div class="page-heading">
+
+        <h1>Orders</h1>
+
+        <p>View customers' orders and update their status.</p>
+
+      </div>
+
+      <div class="panel">
+
+        <input
+          class="search"
+          id="orderSearch"
+          placeholder="🔎 Search Order ID, customer or phone..."
+        >
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Area</th>
+                <th>Total</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="ordersTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CUSTOMERS -->
+
+    <section class="page" id="page-customers">
+
+      <div class="page-heading">
+
+        <h1>Customers</h1>
+
+        <p>Customer accounts and order information.</p>
+
+      </div>
+
+      <div class="panel">
+
+        <input
+          class="search"
+          id="customerSearch"
+          placeholder="🔎 Search customers..."
+        >
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Orders</th>
+                <th>Joined</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="customersTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- PAYMENTS -->
+
+    <section class="page" id="page-payments">
+
+      <div class="page-heading">
+
+        <h1>Payments</h1>
+
+        <p>View payment methods and transaction references.</p>
+
+      </div>
+
+      <div class="panel">
+
+        <div class="notice">
+
+          Payment details shown here come from customer orders.
+          Verify mobile-money or bank payments before marking an
+          order as completed.
+
+        </div>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Order</th>
+                <th>Customer</th>
+                <th>Method</th>
+                <th>Reference</th>
+                <th>Total</th>
+                <th>Status</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="paymentsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- DELIVERY -->
+
+    <section class="page" id="page-delivery">
+
+      <div class="page-heading">
+
+        <h1>Delivery Management</h1>
+
+        <p>
+          Manually set delivery prices and expected delivery dates.
+        </p>
+
+      </div>
+
+      <div class="notice">
+
+        ⚠️ Edit the delivery price and expected date for each area.
+        Customers will see the saved delivery price during checkout.
+
+      </div>
+
+      <div id="deliveryEditor"></div>
+
+      <button class="btn btn-primary" id="saveDeliveryButton">
+        💾 Save Delivery Prices & Dates
+      </button>
+
+    </section>
+
+    <!-- REVIEWS -->
+
+    <section class="page" id="page-reviews">
+
+      <div class="page-heading">
+
+        <h1>Customer Reviews</h1>
+
+        <p>View reviews submitted by customers.</p>
+
+      </div>
+
+      <div class="panel">
+
+        <div id="reviewsTable"></div>
+
+      </div>
+
+    </section>
+
+    <!-- MESSAGES -->
+
+    <section class="page" id="page-messages">
+
+      <div class="page-heading">
+
+        <h1>Messages</h1>
+
+        <p>Customer messages stored by the website.</p>
+
+      </div>
+
+      <div class="panel">
+
+        <div id="messagesList"></div>
+
+        <div class="empty">
+          Contact-form messaging will appear here when connected
+          to the website contact system.
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- SETTINGS -->
+
+    <section class="page" id="page-settings">
+
+      <div class="page-heading">
+
+        <h1>Business Settings</h1>
+
+        <p>Manage the business information used by the website.</p>
+
+      </div>
+
+      <div class="panel">
+
+        <form id="settingsForm">
+
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label>Business Name</label>
+
+              <input
+                id="businessName"
+                value="Famara'smarket"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>WhatsApp Number</label>
+
+              <input
+                id="businessWhatsApp"
+                placeholder="Enter WhatsApp number"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>Orange Money</label>
+
+              <input
+                id="orangeMoney"
+                placeholder="Enter Orange Money number"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>Afrimoney</label>
+
+              <input
+                id="afrimoney"
+                placeholder="Enter Afrimoney number"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>Access Bank Account</label>
+
+              <input
+                id="accessBank"
+                placeholder="Enter bank account"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>Access Bank Name</label>
+
+              <input
+                id="accessBankName"
+                placeholder="Enter account name"
+              >
+
+            </div>
+
+            <div class="form-group full">
+
+              <label>Business Description</label>
+
+              <textarea id="businessDescription">Quality products with convenient delivery across Sierra Leone.</textarea>
+
+            </div>
+
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            💾 Save Settings
+          </button>
+
+        </form>
+
+      </div>
+
+      <div class="panel">
+
+        <h2>🗄️ Browser Data</h2>
+
+        <p class="small" style="margin-bottom:15px">
+
+          The current testing version stores information in this
+          browser using localStorage. Do not clear browser storage
+          if you want to keep the testing data.
+
+        </p>
+
+        <button
+          class="btn btn-secondary"
+          id="exportDataButton"
+        >
+          📥 Export Website Data
+        </button>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+<!-- PRODUCT MODAL -->
+
+<div class="modal" id="productModal">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2 id="productModalTitle">
+        Add Product
+      </h2>
+
+      <button class="close" id="closeProductModal">
+        ×
+      </button>
+
+    </div>
+
+    <form id="productForm">
+
+      <input type="hidden" id="productId">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+
+          <label>Product Name *</label>
+
+          <input
+            id="productName"
+            required
+            placeholder="Product name"
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Category *</label>
+
+          <input
+            id="productCategory"
+            required
+            placeholder="Example: Skincare"
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Price (Leones) *</label>
+
+          <input
+            type="number"
+            min="0"
+            id="productPrice"
+            required
+            placeholder="0"
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Stock</label>
+
+          <input
+            type="number"
+            min="0"
+            id="productStock"
+            value="0"
+          >
+
+        </div>
+
+        <div class="form-group full">
+
+          <label>Description</label>
+
+          <textarea
+            id="productDescription"
+            placeholder="Product description"
+          ></textarea>
+
+        </div>
+
+        <div class="form-group full">
+
+          <label>Product Image URL</label>
+
+          <input
+            id="productImage"
+            placeholder="Paste image URL"
+          >
+
+          <img
+            id="productImagePreview"
+            class="product-image-preview"
+            style="display:none"
+            alt="Preview"
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Featured Product</label>
+
+          <select id="productFeatured">
+
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Discount</label>
+
+          <input
+            type="number"
+            min="0"
+            id="productDiscount"
+            value="0"
+          >
+
+        </div>
+
+      </div>
+
+      <div class="actions">
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >
+          💾 Save Product
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          id="cancelProductButton"
+        >
+          Cancel
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- ORDER MODAL -->
+
+<div class="modal" id="orderModal">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Order Details</h2>
+
+      <button class="close" id="closeOrderModal">
+        ×
+      </button>
+
+    </div>
+
+    <div id="orderDetails"></div>
+
+  </div>
+
+</div>
+
+<script>
+
+/* =====================================================
+   FAMARA'SMARKET ADMIN
+   ===================================================== */
+
+/* ==============================
+   TEMPORARY ADMIN LOGIN
+============================== */
+
+const ADMIN_USERNAME = "admin";
+const ADMIN_PASSWORD = "Famara2026";
+
+const adminLogin =
+  document.getElementById("adminLogin");
+
+const adminLoginForm =
+  document.getElementById("adminLoginForm");
+
+const loginError =
+  document.getElementById("loginError");
+
+function checkAdminLogin(){
+
+  const loggedIn =
+    sessionStorage.getItem(
+      "famarasmarket_admin_logged_in"
+    );
+
+  if(loggedIn === "true"){
+
+    adminLogin.style.display = "none";
+
+  }else{
+
+    adminLogin.style.display = "flex";
+
+  }
+
+}
+
+adminLoginForm.addEventListener(
+  "submit",
+  function(event){
+
+    event.preventDefault();
+
+    const username =
+      document
+        .getElementById("adminUsername")
+        .value
+        .trim();
+
+    const password =
+      document
+        .getElementById("adminPassword")
+        .value;
+
+    if(
+      username === ADMIN_USERNAME &&
+      password === ADMIN_PASSWORD
+    ){
+
+      sessionStorage.setItem(
+        "famarasmarket_admin_logged_in",
+        "true"
+      );
+
+      adminLogin.style.display =
+        "none";
+
+      loginError.style.display =
+        "none";
+
+    }else{
+
+      loginError.style.display =
+        "block";
+
+    }
+
+  }
+);
+
+/* ==============================
+   STORAGE
+============================== */
+
+const PRODUCT_KEYS = [
+  "famarasmarket_products",
+  "famarasmarket_admin_products",
+  "adminProducts",
+  "products"
+];
+
+const ORDERS_KEY =
+  "famarasmarket_orders";
+
+const REVIEWS_KEY =
+  "famarasmarket_reviews";
+
+const DELIVERY_KEY =
+  "famarasmarket_delivery_table";
+
+const SETTINGS_KEY =
+  "famarasmarket_settings";
+
+/* ==============================
+   DELIVERY TABLE
+============================== */
+
+const DELIVERY_TABLE = {
+
+  "Central Freetown":{fee:0,expectedDate:""},
+  "Aberdeen":{fee:0,expectedDate:""},
+  "Lumley":{fee:0,expectedDate:""},
+  "Wilkinson Road":{fee:0,expectedDate:""},
+  "Wilberforce":{fee:0,expectedDate:""},
+  "Hill Station":{fee:0,expectedDate:""},
+  "Congo Town":{fee:0,expectedDate:""},
+  "Juba":{fee:0,expectedDate:""},
+  "Goderich":{fee:0,expectedDate:""},
+  "Kissy":{fee:0,expectedDate:""},
+  "Cline Town":{fee:0,expectedDate:""},
+  "Calaba Town":{fee:0,expectedDate:""},
+  "Wellington":{fee:0,expectedDate:""},
+  "Kroo Bay":{fee:0,expectedDate:""},
+  "Fourah Bay":{fee:0,expectedDate:""},
+  "Murray Town":{fee:0,expectedDate:""},
+  "Kingtom":{fee:0,expectedDate:""},
+  "Brookfields":{fee:0,expectedDate:""},
+
+  "Waterloo":{fee:0,expectedDate:""},
+  "Jui":{fee:0,expectedDate:""},
+  "Hastings":{fee:0,expectedDate:""},
+  "Newton":{fee:0,expectedDate:""},
+  "Masiaka":{fee:0,expectedDate:""},
+
+  "Port Loko":{fee:0,expectedDate:""},
+  "Kambia":{fee:0,expectedDate:""},
+  "Kamakwie":{fee:0,expectedDate:""},
+  "Lunsar":{fee:0,expectedDate:""},
+
+  "Makeni":{fee:0,expectedDate:""},
+  "Magburaka":{fee:0,expectedDate:""},
+  "Kabala":{fee:0,expectedDate:""},
+  "Koinadugu":{fee:0,expectedDate:""},
+  "Bendugu":{fee:0,expectedDate:""},
+  "Falaba":{fee:0,expectedDate:""},
+  "Mile 91":{fee:0,expectedDate:""},
+  "Binkolo":{fee:0,expectedDate:""},
+
+  "Kenema":{fee:0,expectedDate:""},
+  "Kailahun":{fee:0,expectedDate:""},
+  "Koidu":{fee:0,expectedDate:""},
+  "Sefadu":{fee:0,expectedDate:""},
+  "Kono":{fee:0,expectedDate:""},
+
+  "Bo":{fee:0,expectedDate:""},
+  "Moyamba":{fee:0,expectedDate:""},
+  "Pujehun":{fee:0,expectedDate:""},
+  "Bonthe":{fee:0,expectedDate:""},
+  "Mattru Jong":{fee:0,expectedDate:""},
+
+  "Other Sierra Leone Area":{fee:0,expectedDate:""}
+
+};
+
+const DELIVERY_GROUPS = [
+
+  {
+    name:"Freetown",
+    areas:[
+      "Central Freetown","Aberdeen","Lumley",
+      "Wilkinson Road","Wilberforce","Hill Station",
+      "Congo Town","Juba","Goderich","Kissy",
+      "Cline Town","Calaba Town","Wellington",
+      "Kroo Bay","Fourah Bay","Murray Town",
+      "Kingtom","Brookfields"
+    ]
+  },
+
+  {
+    name:"Western Area Rural",
+    areas:[
+      "Waterloo","Jui","Hastings","Newton","Masiaka"
+    ]
+  },
+
+  {
+    name:"North Western Province",
+    areas:[
+      "Port Loko","Kambia","Kamakwie","Lunsar"
+    ]
+  },
+
+  {
+    name:"Northern Province",
+    areas:[
+      "Makeni","Magburaka","Kabala","Koinadugu",
+      "Bendugu","Falaba","Mile 91","Binkolo"
+    ]
+  },
+
+  {
+    name:"Eastern Province",
+    areas:[
+      "Kenema","Kailahun","Koidu","Sefadu","Kono"
+    ]
+  },
+
+  {
+    name:"Southern Province",
+    areas:[
+      "Bo","Moyamba","Pujehun","Bonthe","Mattru Jong"
+    ]
+  },
+
+  {
+    name:"Other",
+    areas:["Other Sierra Leone Area"]
+  }
+
+];
+
+/* ==============================
+   STATE
+============================== */
+
+let products=[];
+let orders=[];
+let reviews=[];
+let customers=[];
+let editingProductId=null;
+
+/* ==============================
+   HELPERS
+============================== */
+
+function money(value){
+
+  return "Le " +
+    Number(value || 0).toLocaleString(
+      "en-US",
+      {maximumFractionDigits:0}
+    );
+
+}
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(
+      /[&<>"']/g,
+      function(character){
+
+        const map={
+          "&":"&amp;",
+          "<":"&lt;",
+          ">":"&gt;",
+          '"':"&quot;",
+          "'":"&#039;"
+        };
+
+        return map[character];
+
+      }
+    );
+
+}
+
+function formatDate(date){
+
+  if(!date)return "—";
+
+  const d =
+    new Date(
+      String(date).includes("T")
+        ? date
+        : date+"T00:00:00"
+    );
+
+  if(isNaN(d))return date;
+
+  return d.toLocaleDateString(
+    "en-GB",
+    {
+      day:"numeric",
+      month:"short",
+      year:"numeric"
+    }
+  );
+
+}
+
+/* ==============================
+   PRODUCTS
+============================== */
+
+function getProducts(){
+
+  for(const key of PRODUCT_KEYS){
+
+    const raw =
+      localStorage.getItem(key);
+
+    if(!raw)continue;
+
+    try{
+
+      const parsed=JSON.parse(raw);
+
+      if(Array.isArray(parsed))
+        return normalizeProducts(parsed);
+
+      if(
+        parsed &&
+        Array.isArray(parsed.products)
+      )
+        return normalizeProducts(parsed.products);
+
+    }catch(error){}
+
+  }
+
+  return [];
+
+}
+
+function normalizeProducts(list){
+
+  return list.map(
+    function(product,index){
+
+      return {
+
+        id:
+          product.id ??
+          product.productId ??
+          index+1,
+
+        name:
+          product.name ??
+          product.title ??
+          "Product",
+
+        category:
+          product.category ??
+          "General",
+
+        description:
+          product.description ?? "",
+
+        price:
+          Number(
+            product.price ??
+            product.salePrice ??
+            0
+          ),
+
+        image:
+          product.image ??
+          product.imageUrl ??
+          "",
+
+        stock:
+          Number(product.stock ?? 0),
+
+        featured:
+          Boolean(product.featured),
+
+        discount:
+          Number(product.discount ?? 0)
+
+      };
+
+    }
+  );
+
+}
+
+function saveProducts(){
+
+  localStorage.setItem(
+    "famarasmarket_products",
+    JSON.stringify(products)
+  );
+
+}
+
+/* ==============================
+   ORDERS
+============================== */
+
+function getOrders(){
+
+  try{
+
+    const raw =
+      localStorage.getItem(ORDERS_KEY);
+
+    if(!raw)return [];
+
+    const parsed=JSON.parse(raw);
+
+    return Array.isArray(parsed)
+      ? parsed
+      : [];
+
+  }catch(error){
+
+    return [];
+
+  }
+
+}
+
+function saveOrders(){
+
+  localStorage.setItem(
+    ORDERS_KEY,
+    JSON.stringify(orders)
+  );
+
+}
+
+/* ==============================
+   REVIEWS
+============================== */
+
+function getReviews(){
+
+  try{
+
+    const raw =
+      localStorage.getItem(REVIEWS_KEY);
+
+    if(!raw)return [];
+
+    const parsed=JSON.parse(raw);
+
+    return Array.isArray(parsed)
+      ? parsed
+      : [];
+
+  }catch(error){
+
+    return [];
+
+  }
+
+}
+
+/* ==============================
+   CUSTOMERS
+============================== */
+
+function findCustomerStorage(){
+
+  const keys=[
+    "famarasmarket_customers",
+    "famarasmarket_users",
+    "customers",
+    "users",
+    "famarasmarket_accounts"
+  ];
+
+  for(const key of keys){
+
+    const raw=
+      localStorage.getItem(key);
+
+    if(!raw)continue;
+
+    try{
+
+      const parsed=JSON.parse(raw);
+
+      if(Array.isArray(parsed))
+        return parsed;
+
+      if(
+        parsed &&
+        Array.isArray(parsed.customers)
+      )
+        return parsed.customers;
+
+      if(
+        parsed &&
+        Array.isArray(parsed.users)
+      )
+        return parsed.users;
+
+    }catch(error){}
+
+  }
+
+  return [];
+
+}
+
+function buildCustomers(){
+
+  const accountCustomers =
+    findCustomerStorage();
+
+  const map=new Map();
+
+  accountCustomers.forEach(
+    function(customer){
+
+      const name=
+        customer.name ??
+        customer.fullName ??
+        customer.username ??
+        "Customer";
+
+      const phone=
+        customer.phone ??
+        customer.phoneNumber ??
+        "";
+
+      const email=
+        customer.email ?? "";
+
+      const key=
+        String(
+          email ||
+          phone ||
+          name
+        ).toLowerCase();
+
+      map.set(
+        key,
+        {
+          name,
+          phone,
+          email,
+          createdAt:
+            customer.createdAt ??
+            customer.date ??
+            "",
+          orders:0
+        }
+      );
+
+    }
+  );
+
+  orders.forEach(
+    function(order){
+
+      const customer=
+        order.customer || {};
+
+      const name=
+        customer.name || "Customer";
+
+      const phone=
+        customer.phone || "";
+
+      const key=
+        String(
+          phone || name
+        ).toLowerCase();
+
+      if(!map.has(key)){
+
+        map.set(
+          key,
+          {
+            name,
+            phone,
+            email:customer.email || "",
+            createdAt:order.createdAt || "",
+            orders:0
+          }
+        );
+
+      }
+
+      map.get(key).orders++;
+
+    }
+  );
+
+  customers=Array.from(map.values());
+
+}
+
+/* ==============================
+   DASHBOARD
+============================== */
+
+function renderDashboard(){
+
+  const revenue=
+    orders.reduce(
+      (total,order)=>
+        total+Number(order.total||0),
+      0
+    );
+
+  document.getElementById("statProducts")
+    .textContent=products.length;
+
+  document.getElementById("statOrders")
+    .textContent=orders.length;
+
+  document.getElementById("statCustomers")
+    .textContent=customers.length;
+
+  document.getElementById("statRevenue")
+    .textContent=money(revenue);
+
+  renderSalesChart();
+  renderDashboardOrders();
+  renderDashboardCustomers();
+  renderDashboardReviews();
+
+}
+
+function renderSalesChart(){
+
+  const chart=
+    document.getElementById("salesChart");
+
+  chart.innerHTML="";
+
+  const days=[];
+
+  for(let i=6;i>=0;i--){
+
+    const date=new Date();
+
+    date.setDate(
+      date.getDate()-i
+    );
+
+    days.push(date);
+
+  }
+
+  const values=
+    days.map(
+      function(day){
+
+        const key=
+          day.toISOString().slice(0,10);
+
+        return orders
+          .filter(
+            order=>
+              String(
+                order.createdAt||""
+              ).slice(0,10)===key
+          )
+          .reduce(
+            (total,order)=>
+              total+Number(order.total||0),
+            0
+          );
+
+      }
+    );
+
+  const max=Math.max(...values,1);
+
+  values.forEach(
+    function(value,index){
+
+      const bar=
+        document.createElement("div");
+
+      bar.className="bar";
+
+      bar.style.height=
+        Math.max(
+          5,
+          (value/max)*100
+        )+"%";
+
+      const label=
+        document.createElement("span");
+
+      label.textContent=
+        days[index].toLocaleDateString(
+          "en-GB",
+          {
+            day:"numeric",
+            month:"short"
+          }
+        );
+
+      bar.appendChild(label);
+      chart.appendChild(bar);
+
+    }
+  );
+
+}
+
+function renderDashboardOrders(){
+
+  const container=
+    document.getElementById(
+      "dashboardOrders"
+    );
+
+  const recent=
+    orders
+      .slice()
+      .reverse()
+      .slice(0,5);
+
+  if(!recent.length){
+
+    container.innerHTML=
+      `<div class="empty">No orders yet.</div>`;
+
+    return;
+
+  }
+
+  container.innerHTML=
+    recent.map(
+      order=>`
+
+        <div style="
+          padding:10px 0;
+          border-bottom:1px solid #eee;
+        ">
+
+          <strong>
+            ${escapeHTML(order.id)}
+          </strong>
+
+          <br>
+
+          <span class="small">
+            ${escapeHTML(
+              order.customer?.name ||
+              "Customer"
+            )}
+          </span>
+
+          <br>
+
+          <strong>
+            ${money(order.total)}
+          </strong>
+
+          <br>
+
+          <span class="badge">
+            ${escapeHTML(
+              order.status ||
+              "Pending"
+            )}
+          </span>
+
+        </div>
+
+      `
+    ).join("");
+
+}
+
+function renderDashboardCustomers(){
+
+  const container=
+    document.getElementById(
+      "dashboardCustomers"
+    );
+
+  const recent=
+    customers
+      .slice()
+      .reverse()
+      .slice(0,5);
+
+  if(!recent.length){
+
+    container.innerHTML=
+      `<div class="empty">No customers yet.</div>`;
+
+    return;
+
+  }
+
+  container.innerHTML=
+    recent.map(
+      customer=>`
+
+        <div style="
+          padding:10px 0;
+          border-bottom:1px solid #eee;
+        ">
+
+          <strong>
+            ${escapeHTML(customer.name)}
+          </strong>
+
+          <br>
+
+          <span class="small">
+            ${escapeHTML(
+              customer.phone ||
+              customer.email ||
+              ""
+            )}
+          </span>
+
+          <br>
+
+          Orders:
+          <strong>
+            ${customer.orders}
+          </strong>
+
+        </div>
+
+      `
+    ).join("");
+
+}
+
+function renderDashboardReviews(){
+
+  const container=
+    document.getElementById(
+      "dashboardReviews"
+    );
+
+  const recent=
+    reviews
+      .slice()
+      .reverse()
+      .slice(0,4);
+
+  if(!recent.length){
+
+    container.innerHTML=
+      `<div class="empty">No reviews yet.</div>`;
+
+    return;
+
+  }
+
+  container.innerHTML=
+    recent.map(
+      review=>`
+
+        <div style="
+          padding:10px 0;
+          border-bottom:1px solid #eee;
+        ">
+
+          <strong>
+            ${"⭐".repeat(
+              Number(review.rating||5)
+            )}
+          </strong>
+
+          <br>
+
+          <strong>
+            ${escapeHTML(review.name||"Customer")}
+          </strong>
+
+          <br>
+
+          <span class="small">
+            ${escapeHTML(review.text||"")}
+          </span>
+
+        </div>
+
+      `
+    ).join("");
+
+}
+
+/* ==============================
+   PRODUCT TABLE
+============================== */
+
+function renderProductsTable(){
+
+  const tbody=
+    document.getElementById(
+      "productsTable"
+    );
+
+  const search=
+    document.getElementById(
+      "productSearch"
+    ).value
+    .toLowerCase()
+    .trim();
+
+  const filtered=
+    products.filter(
+      product=>
+        String(product.name)
+          .toLowerCase()
+          .includes(search) ||
+        String(product.category)
+          .toLowerCase()
+          .includes(search)
+    );
+
+  tbody.innerHTML="";
+
+  if(!filtered.length){
+
+    tbody.innerHTML=
+      `<tr>
+        <td colspan="6" class="empty">
+          No products found.
+        </td>
+      </tr>`;
+
+    return;
+
+  }
+
+  filtered.forEach(
+    function(product){
+
+      const tr=
+        document.createElement("tr");
+
+      tr.innerHTML=`
+
+        <td>
+          <strong>
+            ${escapeHTML(product.name)}
+          </strong>
+
+          ${
+            product.image
+              ? `<br><span class="small">Image added</span>`
+              : `<br><span class="small">No image</span>`
+          }
+        </td>
+
+        <td>
+          ${escapeHTML(product.category)}
+        </td>
+
+        <td>
+          ${money(product.price)}
+        </td>
+
+        <td>
+          ${product.stock}
+        </td>
+
+        <td>
+          ${product.featured ? "⭐ Yes":"No"}
+        </td>
+
+        <td>
+
+          <div class="actions">
+
+            <button
+              class="btn btn-secondary"
+              data-edit="${escapeHTML(product.id)}"
+            >
+              Edit
+            </button>
+
+            <button
+              class="btn btn-danger"
+              data-delete="${escapeHTML(product.id)}"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </td>
+
+      `;
+
+      tbody.appendChild(tr);
+
+    }
+  );
+
+  tbody
+    .querySelectorAll("[data-edit]")
+    .forEach(
+      button=>
+        button.addEventListener(
+          "click",
+          function(){
+            editProduct(
+              this.dataset.edit
+            );
+          }
+        )
+    );
+
+  tbody
+    .querySelectorAll("[data-delete]")
+    .forEach(
+      button=>
+        button.addEventListener(
+          "click",
+          function(){
+            deleteProduct(
+              this.dataset.delete
+            );
+          }
+        )
+    );
+
+}
+
+/* ==============================
+   PRODUCT MODAL
+============================== */
+
+function openProductModal(product=null){
+
+  editingProductId=
+    product
+      ? String(product.id)
+      : null;
+
+  document.getElementById(
+    "productModalTitle"
+  ).textContent=
+    product
+      ? "Edit Product"
+      : "Add Product";
+
+  document.getElementById(
+    "productId"
+  ).value=
+    product?.id||"";
+
+  document.getElementById(
+    "productName"
+  ).value=
+    product?.name||"";
+
+  document.getElementById(
+    "productCategory"
+  ).value=
+    product?.category||"";
+
+  document.getElementById(
+    "productPrice"
+  ).value=
+    product?.price||"";
+
+  document.getElementById(
+    "productStock"
+  ).value=
+    product?.stock||0;
+
+  document.getElementById(
+    "productDescription"
+  ).value=
+    product?.description||"";
+
+  document.getElementById(
+    "productImage"
+  ).value=
+    product?.image||"";
+
+  document.getElementById(
+    "productFeatured"
+  ).value=
+    product?.featured
+      ? "true"
+      : "false";
+
+  document.getElementById(
+    "productDiscount"
+  ).value=
+    product?.discount||0;
+
+  updateImagePreview();
+
+  document.getElementById(
+    "productModal"
+  ).style.display="block";
+
+}
+
+function closeProductModal(){
+
+  document.getElementById(
+    "productModal"
+  ).style.display="none";
+
+  editingProductId=null;
+
+}
+
+function editProduct(id){
+
+  const product=
+    products.find(
+      item=>
+        String(item.id)===String(id)
+    );
+
+  if(product)
+    openProductModal(product);
+
+}
+
+function deleteProduct(id){
+
+  const product=
+    products.find(
+      item=>
+        String(item.id)===String(id)
+    );
+
+  if(!product)return;
+
+  if(
+    !confirm(
+      "Delete "+product.name+"?"
+    )
+  )return;
+
+  products=
+    products.filter(
+      item=>
+        String(item.id)!==String(id)
+    );
+
+  saveProducts();
+  renderProductsTable();
+  renderDashboard();
+
+  alert("Product deleted.");
+
+}
+
+function saveProduct(event){
+
+  event.preventDefault();
+
+  const name=
+    document.getElementById(
+      "productName"
+    ).value.trim();
+
+  const category=
+    document.getElementById(
+      "productCategory"
+    ).value.trim();
+
+  const price=
+    Number(
+      document.getElementById(
+        "productPrice"
+      ).value||0
+    );
+
+  const stock=
+    Number(
+      document.getElementById(
+        "productStock"
+      ).value||0
+    );
+
+  const description=
+    document.getElementById(
+      "productDescription"
+    ).value.trim();
+
+  const image=
+    document.getElementById(
+      "productImage"
+    ).value.trim();
+
+  const featured=
+    document.getElementById(
+      "productFeatured"
+    ).value==="true";
+
+  const discount=
+    Number(
+      document.getElementById(
+        "productDiscount"
+      ).value||0
+    );
+
+  if(!name){
+    alert("Please enter a product name.");
+    return;
+  }
+
+  if(!category){
+    alert("Please enter a category.");
+    return;
+  }
+
+  if(price<0){
+    alert("Price cannot be negative.");
+    return;
+  }
+
+  if(editingProductId){
+
+    const index=
+      products.findIndex(
+        item=>
+          String(item.id)===
+          String(editingProductId)
+      );
+
+    if(index!==-1){
+
+      products[index]={
+        ...products[index],
+        name,
+        category,
+        price,
+        stock,
+        description,
+        image,
+        featured,
+        discount
+      };
+
+    }
+
+  }else{
+
+    products.push({
+
+      id:"FM-P-"+Date.now(),
+
+      name,
+      category,
+      price,
+      stock,
+      description,
+      image,
+      featured,
+      discount
+
+    });
+
+  }
+
+  saveProducts();
+  closeProductModal();
+  renderProductsTable();
+  renderDashboard();
+
+  alert("Product saved successfully.");
+
+}
+
+function updateImagePreview(){
+
+  const input=
+    document.getElementById(
+      "productImage"
+    );
+
+  const preview=
+    document.getElementById(
+      "productImagePreview"
+    );
+
+  const url=
+    input.value.trim();
+
+  if(!url){
+
+    preview.style.display="none";
+    preview.removeAttribute("src");
+
+    return;
+
+  }
+
+  preview.src=url;
+  preview.style.display="block";
+
+}
+
+/* ==============================
+   ORDERS
+============================== */
+
+function renderOrdersTable(){
+
+  const tbody=
+    document.getElementById(
+      "ordersTable"
+    );
+
+  const search=
+    document.getElementById(
+      "orderSearch"
+    ).value
+    .toLowerCase()
+    .trim();
+
+  const filtered=
+    orders.filter(
+      order=>{
+
+        const customer=
+          order.customer||{};
+
+        const text=
+          (
+            order.id+" "+
+            customer.name+" "+
+            customer.phone+" "+
+            customer.area
+          ).toLowerCase();
+
+        return text.includes(search);
+
+      }
+    );
+
+  tbody.innerHTML="";
+
+  if(!filtered.length){
+
+    tbody.innerHTML=
+      `<tr>
+        <td colspan="7" class="empty">
+          No orders found.
+        </td>
+      </tr>`;
+
+    return;
+
+  }
+
+  filtered
+    .slice()
+    .reverse()
+    .forEach(
+      function(order){
+
+        const customer=
+          order.customer||{};
+
+        const tr=
+          document.createElement("tr");
+
+        tr.innerHTML=`
+
+          <td>
+            <strong>
+              ${escapeHTML(order.id)}
+            </strong>
+
+            <br>
+
+            <span class="small">
+              ${formatDate(order.createdAt)}
+            </span>
+          </td>
+
+          <td>
+
+            ${escapeHTML(
+              customer.name||
+              "Customer"
+            )}
+
+            <br>
+
+            <span class="small">
+              ${escapeHTML(
+                customer.phone||""
+              )}
+            </span>
+
+          </td>
+
+          <td>
+            ${escapeHTML(
+              customer.area||""
+            )}
+          </td>
+
+          <td>
+            ${money(order.total)}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              order.paymentMethod||""
+            )}
+
+            ${
+              order.paymentReference
+                ? `<br>
+                   <span class="small">
+                     Ref:
+                     ${escapeHTML(
+                       order.paymentReference
+                     )}
+                   </span>`
+                :""
+            }
+
+          </td>
+
+          <td>
+
+            <select
+              class="order-status"
+              data-id="${escapeHTML(order.id)}"
+            >
+
+              ${statusOptions(order.status)}
+
+            </select>
+
+          </td>
+
+          <td>
+
+            <button
+              class="btn btn-secondary"
+              data-order-view="${escapeHTML(order.id)}"
+            >
+              View
+            </button>
+
+          </td>
+
+        `;
+
+        tbody.appendChild(tr);
+
+      }
+    );
+
+  tbody
+    .querySelectorAll(".order-status")
+    .forEach(
+      select=>
+        select.addEventListener(
+          "change",
+          function(){
+            updateOrderStatus(
+              this.dataset.id,
+              this.value
+            );
+          }
+        )
+    );
+
+  tbody
+    .querySelectorAll("[data-order-view]")
+    .forEach(
+      button=>
+        button.addEventListener(
+          "click",
+          function(){
+            showOrderDetails(
+              this.dataset.orderView
+            );
+          }
+        )
+    );
+
+}
+
+function statusOptions(current){
+
+  const statuses=[
+    "Pending",
+    "Processing",
+    "Ready for Delivery",
+    "Out for Delivery",
+    "Delivered",
+    "Package Received",
+    "Cancelled",
+    "Refunded"
+  ];
+
+  return statuses
+    .map(
+      status=>`
+
+        <option
+          value="${escapeHTML(status)}"
+          ${
+            String(current)===String(status)
+              ? "selected"
+              :""
+          }
+        >
+          ${escapeHTML(status)}
+        </option>
+
+      `
+    )
+    .join("");
+
+}
+
+function updateOrderStatus(id,status){
+
+  const order=
+    orders.find(
+      item=>
+        String(item.id)===String(id)
+    );
+
+  if(!order)return;
+
+  order.status=status;
+
+  if(status==="Package Received"){
+
+    order.packageReceived=true;
+    order.receivedAt=
+      new Date().toISOString();
+
+  }
+
+  saveOrders();
+  renderOrdersTable();
+  renderDashboard();
+
+}
+
+function showOrderDetails(id){
+
+  const order=
+    orders.find(
+      item=>
+        String(item.id)===String(id)
+    );
+
+  if(!order)return;
+
+  const customer=
+    order.customer||{};
+
+  const items=
+    Array.isArray(order.items)
+      ? order.items
+      : [];
+
+  const itemHTML=
+    items.length
+      ? items.map(
+          item=>`
+
+            <div style="
+              padding:8px 0;
+              border-bottom:1px solid #eee;
+            ">
+
+              ${escapeHTML(item.name)}
+
+              × ${item.quantity}
+
+              <strong style="float:right">
+                ${money(
+                  item.total ??
+                  (
+                    Number(item.price||0)*
+                    Number(item.quantity||0)
+                  )
+                )}
+              </strong>
+
+            </div>
+
+          `
+        ).join("")
+      :"No items";
+
+  document.getElementById(
+    "orderDetails"
+  ).innerHTML=`
+
+    <div class="panel" style="margin:0 0 15px">
+
+      <strong>Order ID</strong>
+
+      <div>
+        ${escapeHTML(order.id)}
+      </div>
+
+    </div>
+
+    <div class="panel" style="margin:0 0 15px">
+
+      <h2>Customer</h2>
+
+      <p>
+        <strong>Name:</strong>
+        ${escapeHTML(customer.name||"")}
+      </p>
+
+      <p>
+        <strong>Phone:</strong>
+        ${escapeHTML(customer.phone||"")}
+      </p>
+
+      <p>
+        <strong>Area:</strong>
+        ${escapeHTML(customer.area||"")}
+      </p>
+
+      <p>
+        <strong>Address:</strong>
+        ${escapeHTML(customer.address||"")}
+      </p>
+
+    </div>
+
+    <div class="panel" style="margin:0 0 15px">
+
+      <h2>Items</h2>
+
+      ${itemHTML}
+
+    </div>
+
+    <div class="panel" style="margin:0 0 15px">
+
+      <h2>Payment & Delivery</h2>
+
+      <p>
+        <strong>Products:</strong>
+        ${money(order.subtotal)}
+      </p>
+
+      <p>
+        <strong>Delivery:</strong>
+        ${money(order.deliveryFee)}
+      </p>
+
+      <p>
+        <strong>Total:</strong>
+        ${money(order.total)}
+      </p>
+
+      <p>
+        <strong>Payment:</strong>
+        ${escapeHTML(
+          order.paymentMethod||""
+        )}
+      </p>
+
+      <p>
+        <strong>Reference:</strong>
+        ${escapeHTML(
+          order.paymentReference||
+          "Not provided"
+        )}
+      </p>
+
+      <p>
+        <strong>Expected delivery:</strong>
+        ${formatDate(
+          order.expectedDeliveryDate
+        )}
+      </p>
+
+      <p>
+        <strong>Status:</strong>
+        ${escapeHTML(
+          order.status||
+          "Pending"
+        )}
+      </p>
+
+    </div>
+
+    <button
+      class="btn btn-primary"
+      id="closeDetailsButton"
+    >
+      Done
+    </button>
+
+  `;
+
+  document.getElementById(
+    "orderModal"
+  ).style.display="block";
+
+  document.getElementById(
+    "closeDetailsButton"
+  ).onclick=function(){
+
+    document.getElementById(
+      "orderModal"
+    ).style.display="none";
+
+  };
+
+}
+
+/* ==============================
+   CUSTOMERS
+============================== */
+
+function renderCustomersTable(){
+
+  const tbody=
+    document.getElementById(
+      "customersTable"
+    );
+
+  const search=
+    document.getElementById(
+      "customerSearch"
+    ).value
+    .toLowerCase()
+    .trim();
+
+  const filtered=
+    customers.filter(
+      customer=>
+        (
+          customer.name+" "+
+          customer.phone+" "+
+          customer.email
+        )
+        .toLowerCase()
+        .includes(search)
+    );
+
+  tbody.innerHTML="";
+
+  if(!filtered.length){
+
+    tbody.innerHTML=
+      `<tr>
+        <td colspan="5" class="empty">
+          No customers found.
+        </td>
+      </tr>`;
+
+    return;
+
+  }
+
+  filtered.forEach(
+    customer=>{
+
+      const tr=
+        document.createElement("tr");
+
+      tr.innerHTML=`
+
+        <td>
+          <strong>
+            ${escapeHTML(customer.name)}
+          </strong>
+        </td>
+
+        <td>
+          ${escapeHTML(
+            customer.phone||"—"
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            customer.email||"—"
+          )}
+        </td>
+
+        <td>
+          ${customer.orders}
+        </td>
+
+        <td>
+          ${formatDate(
+            customer.createdAt
+          )}
+        </td>
+
+      `;
+
+      tbody.appendChild(tr);
+
+    }
+  );
+
+}
+
+/* ==============================
+   PAYMENTS
+============================== */
+
+function renderPaymentsTable(){
+
+  const tbody=
+    document.getElementById(
+      "paymentsTable"
+    );
+
+  tbody.innerHTML="";
+
+  if(!orders.length){
+
+    tbody.innerHTML=
+      `<tr>
+        <td colspan="6" class="empty">
+          No transactions yet.
+        </td>
+      </tr>`;
+
+    return;
+
+  }
+
+  orders
+    .slice()
+    .reverse()
+    .forEach(
+      order=>{
+
+        const customer=
+          order.customer||{};
+
+        const tr=
+          document.createElement("tr");
+
+        tr.innerHTML=`
+
+          <td>
+            ${escapeHTML(order.id)}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              customer.name||""
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              order.paymentMethod||""
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              order.paymentReference||"—"
+            )}
+          </td>
+
+          <td>
+            ${money(order.total)}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              order.status||"Pending"
+            )}
+          </td>
+
+        `;
+
+        tbody.appendChild(tr);
+
+      }
+    );
+
+}
+
+/* ==============================
+   REVIEWS
+============================== */
+
+function renderReviewsTable(){
+
+  const container=
+    document.getElementById(
+      "reviewsTable"
+    );
+
+  if(!reviews.length){
+
+    container.innerHTML=
+      `<div class="empty">
+        No customer reviews yet.
+      </div>`;
+
+    return;
+
+  }
+
+  container.innerHTML=
+    reviews
+      .slice()
+      .reverse()
+      .map(
+        review=>`
+
+          <div style="
+            padding:16px 0;
+            border-bottom:1px solid #eee;
+          ">
+
+            <div style="font-size:20px">
+              ${"⭐".repeat(
+                Number(review.rating||5)
+              )}
+            </div>
+
+            <strong>
+              ${escapeHTML(
+                review.name||"Customer"
+              )}
+            </strong>
+
+            <p style="margin-top:5px">
+              ${escapeHTML(
+                review.text||""
+              )}
+            </p>
+
+            <span class="small">
+              ${formatDate(
+                review.createdAt
+              )}
+            </span>
+
+          </div>
+
+        `
+      )
+      .join("");
+
+}
+
+/* ==============================
+   DELIVERY
+============================== */
+
+function getDeliveryTable(){
+
+  try{
+
+    const saved=
+      localStorage.getItem(
+        DELIVERY_KEY
+      );
+
+    if(!saved)
+      return {...DELIVERY_TABLE};
+
+    const parsed=
+      JSON.parse(saved);
+
+    return {
+      ...DELIVERY_TABLE,
+      ...parsed
+    };
+
+  }catch(error){
+
+    return {...DELIVERY_TABLE};
+
+  }
+
+}
+
+function saveDeliveryTable(table){
+
+  localStorage.setItem(
+    DELIVERY_KEY,
+    JSON.stringify(table)
+  );
+
+}
+
+function renderDeliveryEditor(){
+
+  const container=
+    document.getElementById(
+      "deliveryEditor"
+    );
+
+  const table=
+    getDeliveryTable();
+
+  container.innerHTML="";
+
+  DELIVERY_GROUPS.forEach(
+    group=>{
+
+      const groupBox=
+        document.createElement("div");
+
+      groupBox.className=
+        "delivery-group";
+
+      groupBox.innerHTML=`
+
+        <div class="delivery-title">
+          📍 ${escapeHTML(group.name)}
+        </div>
+
+      `;
+
+      group.areas.forEach(
+        area=>{
+
+          const data=
+            table[area]||
+            {
+              fee:0,
+              expectedDate:""
+            };
+
+          const row=
+            document.createElement("div");
+
+          row.className="delivery-row";
+
+          row.innerHTML=`
+
+            <strong>
+              ${escapeHTML(area)}
+            </strong>
+
+            <div
+              class="delivery-row-grid"
+              style="margin-top:10px"
+            >
+
+              <div>
+
+                <label>
+                  Delivery Price (Le)
+                </label>
+
+                <input
+                  type="number"
+                  min="0"
+                  class="delivery-fee"
+                  data-area="${escapeHTML(area)}"
+                  value="${Number(data.fee||0)}"
+                >
+
+              </div>
+
+              <div>
+
+                <label>
+                  Expected Delivery Date
+                </label>
+
+                <input
+                  type="date"
+                  class="delivery-date"
+                  data-area="${escapeHTML(area)}"
+                  value="${escapeHTML(
+                    data.expectedDate||""
+                  )}"
+                >
+
+              </div>
+
+            </div>
+
+          `;
+
+          groupBox.appendChild(row);
+
+        }
+      );
+
+      container.appendChild(groupBox);
+
+    }
+  );
+
+}
+
+function saveDeliveryFromEditor(){
+
+  const table=
+    getDeliveryTable();
+
+  document
+    .querySelectorAll(".delivery-fee")
+    .forEach(
+      input=>{
+
+        const area=input.dataset.area;
+
+        if(!table[area])
+          table[area]={};
+
+        table[area].fee=
+          Number(input.value||0);
+
+      }
+    );
+
+  document
+    .querySelectorAll(".delivery-date")
+    .forEach(
+      input=>{
+
+        const area=input.dataset.area;
+
+        if(!table[area])
+          table[area]={};
+
+        table[area].expectedDate=
+          input.value||"";
+
+      }
+    );
+
+  saveDeliveryTable(table);
+
+  alert(
+    "Delivery prices and expected dates saved successfully."
+  );
+
+}
+
+/* ==============================
+   SETTINGS
+============================== */
+
+function loadSettings(){
+
+  try{
+
+    const raw=
+      localStorage.getItem(
+        SETTINGS_KEY
+      );
+
+    if(!raw)return;
+
+    const settings=
+      JSON.parse(raw);
+
+    document.getElementById(
+      "businessName"
+    ).value=
+      settings.businessName||
+      "Famara'smarket";
+
+    document.getElementById(
+      "businessWhatsApp"
+    ).value=
+      settings.whatsapp||"";
+
+    document.getElementById(
+      "orangeMoney"
+    ).value=
+      settings.orangeMoney||"";
+
+    document.getElementById(
+      "afrimoney"
+    ).value=
+      settings.afrimoney||"";
+
+    document.getElementById(
+      "accessBank"
+    ).value=
+      settings.accessBank||"";
+
+    document.getElementById(
+      "accessBankName"
+    ).value=
+      settings.accessBankName||"";
+
+    document.getElementById(
+      "businessDescription"
+    ).value=
+      settings.description||
+      "Quality products with convenient delivery across Sierra Leone.";
+
+  }catch(error){}
+
+}
+
+function saveSettings(event){
+
+  event.preventDefault();
+
+  const settings={
+
+    businessName:
+      document.getElementById(
+        "businessName"
+      ).value.trim(),
+
+    whatsapp:
+      document.getElementById(
+        "businessWhatsApp"
+      ).value.trim(),
+
+    orangeMoney:
+      document.getElementById(
+        "orangeMoney"
+      ).value.trim(),
+
+    afrimoney:
+      document.getElementById(
+        "afrimoney"
+      ).value.trim(),
+
+    accessBank:
+      document.getElementById(
+        "accessBank"
+      ).value.trim(),
+
+    accessBankName:
+      document.getElementById(
+        "accessBankName"
+      ).value.trim(),
+
+    description:
+      document.getElementById(
+        "businessDescription"
+      ).value.trim()
+
+  };
+
+  localStorage.setItem(
+    SETTINGS_KEY,
+    JSON.stringify(settings)
+  );
+
+  alert("Business settings saved.");
+
+}
+
+/* ==============================
+   EXPORT
+============================== */
+
+function exportData(){
+
+  const data={
+
+    exportedAt:
+      new Date().toISOString(),
+
+    products,
+    orders,
+    customers,
+    reviews,
+
+    delivery:
+      getDeliveryTable(),
+
+    settings:
+      localStorage.getItem(
+        SETTINGS_KEY
+      )
+
+  };
+
+  const blob=
+    new Blob(
+      [
+        JSON.stringify(
+          data,
+          null,
+          2
+        )
+      ],
+      {
+        type:"application/json"
+      }
+    );
+
+  const url=
+    URL.createObjectURL(blob);
+
+  const link=
+    document.createElement("a");
+
+  link.href=url;
+
+  link.download=
+    "famarasmarket-backup-"+
+    new Date()
+      .toISOString()
+      .slice(0,10)+
+    ".json";
+
+  link.click();
+
+  URL.revokeObjectURL(url);
+
+}
+
+/* ==============================
+   NAVIGATION
+============================== */
+
+document
+  .querySelectorAll(
+    ".nav-btn[data-page]"
+  )
+  .forEach(
+    button=>{
+
+      button.addEventListener(
+        "click",
+        function(){
+
+          const page=
+            this.dataset.page;
+
+          document
+            .querySelectorAll(".nav-btn")
+            .forEach(
+              btn=>
+                btn.classList.remove("active")
+            );
+
+          this.classList.add("active");
+
+          document
+            .querySelectorAll(".page")
+            .forEach(
+              section=>
+                section.classList.remove("active")
+            );
+
+          const target=
+            document.getElementById(
+              "page-"+page
+            );
+
+          if(target)
+            target.classList.add("active");
+
+          closeMobileMenu();
+          refreshCurrentData();
+
+          if(page==="delivery")
+            renderDeliveryEditor();
+
+        }
+      );
+
+    }
+  );
+
+/* ==============================
+   MOBILE MENU
+============================== */
+
+function closeMobileMenu(){
+
+  document
+    .getElementById("sidebar")
+    .classList.remove("open");
+
+  document
+    .getElementById("mobileOverlay")
+    .classList.remove("show");
+
+}
+
+document.getElementById(
+  "menuButton"
+).addEventListener(
+  "click",
+  function(){
+
+    document
+      .getElementById("sidebar")
+      .classList.toggle("open");
+
+    document
+      .getElementById("mobileOverlay")
+      .classList.toggle("show");
+
+  }
+);
+
+document.getElementById(
+  "mobileOverlay"
+).addEventListener(
+  "click",
+  closeMobileMenu
+);
+
+/* ==============================
+   LOGOUT
+============================== */
+
+document.getElementById(
+  "logoutButton"
+).addEventListener(
+  "click",
+  function(){
+
+    sessionStorage.removeItem(
+      "famarasmarket_admin_logged_in"
+    );
+
+    location.reload();
+
+  }
+);
+
+/* ==============================
+   REFRESH
+============================== */
+
+function refreshCurrentData(){
+
+  products=getProducts();
+  orders=getOrders();
+  reviews=getReviews();
+
+  buildCustomers();
+
+  renderDashboard();
+  renderProductsTable();
+  renderOrdersTable();
+  renderCustomersTable();
+  renderPaymentsTable();
+  renderReviewsTable();
+
+}
+
+/* ==============================
+   EVENTS
+============================== */
+
+document.getElementById(
+  "addProductButton"
+).addEventListener(
+  "click",
+  function(){
+    openProductModal();
+  }
+);
+
+document.getElementById(
+  "refreshProductsButton"
+).addEventListener(
+  "click",
+  refreshCurrentData
+);
+
+document.getElementById(
+  "productSearch"
+).addEventListener(
+  "input",
+  renderProductsTable
+);
+
+document.getElementById(
+  "orderSearch"
+).addEventListener(
+  "input",
+  renderOrdersTable
+);
+
+document.getElementById(
+  "customerSearch"
+).addEventListener(
+  "input",
+  renderCustomersTable
+);
+
+document.getElementById(
+  "closeProductModal"
+).addEventListener(
+  "click",
+  closeProductModal
+);
+
+document.getElementById(
+  "cancelProductButton"
+).addEventListener(
+  "click",
+  closeProductModal
+);
+
+document.getElementById(
+  "productForm"
+).addEventListener(
+  "submit",
+  saveProduct
+);
+
+document.getElementById(
+  "productImage"
+).addEventListener(
+  "input",
+  updateImagePreview
+);
+
+document.getElementById(
+  "closeOrderModal"
+).addEventListener(
+  "click",
+  function(){
+
+    document.getElementById(
+      "orderModal"
+    ).style.display="none";
+
+  }
+);
+
+document.getElementById(
+  "saveDeliveryButton"
+).addEventListener(
+  "click",
+  saveDeliveryFromEditor
+);
+
+document.getElementById(
+  "settingsForm"
+).addEventListener(
+  "submit",
+  saveSettings
+);
+
+document.getElementById(
+  "exportDataButton"
+).addEventListener(
+  "click",
+  exportData
+);
+
+document.getElementById(
+  "viewShopButton"
+).addEventListener(
+  "click",
+  function(){
+
+    window.location.href=
+      "../pages/shop.html";
+
+  }
+);
+
+/* ==============================
+   MODAL OUTSIDE CLICK
+============================== */
+
+document
+  .querySelectorAll(".modal")
+  .forEach(
+    modal=>{
+
+      modal.addEventListener(
+        "click",
+        function(event){
+
+          if(event.target===modal)
+            modal.style.display="none";
+
+        }
+      );
+
+    }
+  );
+
+/* ==============================
+   START
+============================== */
+
+loadSettings();
+refreshCurrentData();
+renderDeliveryEditor();
+checkAdminLogin();
+
+</script>
+
+</body>
+  </html>
