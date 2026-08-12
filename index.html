@@ -1,1010 +1,1102 @@
-<!DOCTYPE html>  <html lang="en">  <head>  
-  <meta charset="UTF-8">  <meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
-> 
-
-<meta
-name="description"
-content="Famara'smarket — your trusted online marketplace for quality products, great value and convenient shopping across Sierra Leone."
-
-> 
-
-<meta
-name="theme-color"
-content="#198754"
-
-> 
-
-  <title>Famara'smarket | Shop Online</title>    <link  
-    rel="stylesheet"  
-    href="css/style.css"  
-  >    <style>  
-  
-    /* =====================================================  
-       HOME PAGE BUTTON FIX  
-       ===================================================== */  
-  
-    .fm-button {  
-      display: inline-block;  
-  
-      padding: 13px 22px;  
-  
-      margin-top: 12px;  
-  
-      background: #198754;  
-  
-      color: #ffffff !important;  
-  
-      border: none;  
-  
-      border-radius: 12px;  
-  
-      text-decoration: none !important;  
-  
-      font-weight: 800;  
-  
-      cursor: pointer;  
-  
-      transition:  
-        background .2s ease,  
-        transform .2s ease;  
-    }  
-  
-    .fm-button:hover {  
-      background: #157347;  
-  
-      transform: translateY(-1px);  
-    }  
-  
-    .fm-button:active {  
-      transform: translateY(0);  
-    }  
-  
-    .fm-cart-button {  
-      display: inline-flex;  
-  
-      align-items: center;  
-  
-      gap: 5px;  
-  
-      padding: 10px 14px;  
-  
-      background: #198754;  
-  
-      color: #ffffff !important;  
-  
-      border-radius: 11px;  
-  
-      text-decoration: none !important;  
-  
-      font-weight: 800;  
-    }  
-  
-    .fm-cart-count {  
-      display: inline-flex;  
-  
-      align-items: center;  
-  
-      justify-content: center;  
-  
-      min-width: 22px;  
-  
-      height: 22px;  
-  
-      padding: 0 5px;  
-  
-      border-radius: 50%;  
-  
-      background: #ffffff;  
-  
-      color: #198754;  
-  
-      font-size: 12px;  
-    }  
-  
-    .fm-footer-grid {  
-      display: grid;  
-  
-      grid-template-columns:  
-        repeat(4, 1fr);  
-  
-      gap: 30px;  
-  
-      margin-bottom: 25px;  
-    }  
-  
-    .fm-footer-column h3 {  
-      margin-bottom: 10px;  
-    }  
-  
-    .fm-footer-column a {  
-      display: block;  
-  
-      margin-bottom: 7px;  
-  
-      color: inherit;  
-  
-      text-decoration: none;  
-    }  
-  
-    .fm-footer-column a:hover {  
-      text-decoration: underline;  
-    }  
-  
-    .fm-footer-bottom {  
-      padding-top: 20px;  
-  
-      border-top:  
-        1px solid rgba(255,255,255,.2);  
-    }  
-  
-    @media (max-width: 800px) {  
-  
-      .fm-footer-grid {  
-        grid-template-columns:  
-          repeat(2, 1fr);  
-      }  
-  
-    }  
-  
-    @media (max-width: 500px) {  
-  
-      .fm-footer-grid {  
-        grid-template-columns: 1fr;  
-      }  
-  
-    }  
-  
-  </style>  </head>  <body>    <!-- =====================================================  
-       HEADER  
-       ===================================================== -->    <header class="header">  <div class="container header-content">  
-
-
-  <a  
-    href="index.html"  
-    class="logo"  
-  >  
-    Famara'smarket  
-  </a>  
-
-
-  <nav class="nav">  
-
-    <a href="index.html">  
-      Home  
-    </a>  
-
-    <a href="pages/shop.html">  
-      Shop  
-    </a>  
-
-    <a href="pages/about.html">  
-      About  
-    </a>  
-
-    <a href="pages/blog.html">  
-      Blog  
-    </a>  
-
-    <a href="pages/gallery.html">  
-      Gallery  
-    </a>  
-
-    <a href="pages/testimonials.html">  
-      Reviews  
-    </a>  
-
-    <a href="pages/faq.html">  
-      FAQ  
-    </a>  
-
-    <a href="pages/contact.html">  
-      Contact  
-    </a>  
-
-  </nav>  
-
-
-  <a  
-    href="pages/shop.html"  
-    class="fm-cart-button"  
-    aria-label="Open shopping cart"  
-  >  
-
-    🛒 Cart  
-
-    <span  
-      class="fm-cart-count"  
-      id="cart-count"  
-    >  
-      0  
-    </span>  
-
-  </a>  
-
-
-</div>
-
-  </header>    <!-- =====================================================  
-       MAIN  
-       ===================================================== -->    <main>  <!-- ===================================================  
-     HERO  
-     =================================================== -->  
-
-<section class="hero">  
-
-  <div class="container hero-content">  
-
-    <div class="hero-text">  
-
-      <p class="welcome">  
-        WELCOME TO  
-      </p>  
-
-
-      <h1>  
-        Famara'smarket  
-      </h1>  
-
-
-      <p>  
-        Your trusted online marketplace for quality  
-        products, great value and convenient shopping.  
-      </p>  
-
-
-      <a  
-        href="pages/shop.html"  
-        class="fm-button"  
-      >  
-        🛍️ Shop Now  
-      </a>  
-
-    </div>  
-
-  </div>  
+<!DOCTYPE html>
+<html lang="en">
 
-</section>  
+<head>
 
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-<!-- ===================================================  
-     CATEGORIES  
-     =================================================== -->  
+  <meta
+    name="description"
+    content="Famara'smarket — your trusted online marketplace for quality products, great value and convenient shopping across Sierra Leone."
+  >
 
-<section class="categories">  
+  <meta
+    name="theme-color"
+    content="#7c3aed"
+  >
 
-  <div class="container">  
+  <title>Famara'smarket | Shop Online</title>
 
-    <h2>  
-      Shop Our Categories  
-    </h2>  
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
 
+  <style>
 
-    <div class="category-grid">  
+    /* =========================================
+       FAMARA'SMARKET HOME PAGE
+       ========================================= */
 
+    .fm-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
 
-      <a  
-        href="pages/shop.html"  
-        class="category-card"  
-      >  
+      padding: 13px 22px;
+      margin-top: 12px;
 
-        <span>  
-          👗  
-        </span>  
+      background: #7c3aed;
+      color: #ffffff !important;
 
-        <h3>  
-          Fashion  
-        </h3>  
+      border: none;
+      border-radius: 999px;
 
-        <p>  
-          Discover stylish products.  
-        </p>  
+      text-decoration: none !important;
 
-      </a>  
+      font-weight: 800;
 
+      cursor: pointer;
 
-      <a  
-        href="pages/shop.html"  
-        class="category-card"  
-      >  
+      transition:
+        background .2s ease,
+        transform .2s ease;
+    }
 
-        <span>  
-          💄  
-        </span>  
+    .fm-button:hover {
+      background: #5b21b6;
+      transform: translateY(-2px);
+    }
 
-        <h3>  
-          Beauty  
-        </h3>  
+    .fm-button:active {
+      transform: translateY(0);
+    }
 
-        <p>  
-          Beauty and skincare products.  
-        </p>  
+    .fm-cart-button {
+      display: inline-flex;
 
-      </a>  
+      align-items: center;
+      justify-content: center;
 
+      gap: 6px;
 
-      <a  
-        href="pages/shop.html"  
-        class="category-card"  
-      >  
+      padding: 10px 14px;
 
-        <span>  
-          🏠  
-        </span>  
+      background: #171717;
+      color: #ffffff !important;
 
-        <h3>  
-          Home  
-        </h3>  
+      border-radius: 999px;
 
-        <p>  
-          Useful products for your home.  
-        </p>  
+      text-decoration: none !important;
 
-      </a>  
+      font-weight: 800;
 
+      white-space: nowrap;
+    }
 
-      <a  
-        href="pages/shop.html"  
-        class="category-card"  
-      >  
+    .fm-cart-button:hover {
+      background: #7c3aed;
+    }
 
-        <span>  
-          🛍️  
-        </span>  
+    .fm-cart-count {
+      display: inline-flex;
 
-        <h3>  
-          Lifestyle  
-        </h3>  
+      align-items: center;
+      justify-content: center;
 
-        <p>  
-          Explore our growing collection.  
-        </p>  
+      min-width: 22px;
+      height: 22px;
 
-      </a>  
+      padding: 0 5px;
 
+      border-radius: 50%;
 
-    </div>  
+      background: #ffffff;
+      color: #7c3aed;
 
-  </div>  
+      font-size: 12px;
+    }
 
-</section>  
+    .fm-footer-grid {
+      display: grid;
 
+      grid-template-columns:
+        repeat(4, 1fr);
 
+      gap: 30px;
 
-<!-- ===================================================  
-     WHY SHOP WITH US  
-     =================================================== -->  
+      margin-bottom: 25px;
 
-<section class="why-us">  
+      text-align: left;
+    }
 
-  <div class="container">  
+    .fm-footer-column h3 {
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
 
-    <h2>  
-      Why Shop With Famara'smarket?  
-    </h2>  
+    .fm-footer-column p {
+      color: #d4d4d4;
+    }
 
+    .fm-footer-column a {
+      display: block;
 
-    <div class="features">  
+      margin-bottom: 7px;
 
+      color: #d4d4d4;
 
-      <div class="feature">  
+      text-decoration: none;
+    }
 
-        <span>  
-          ✨  
-        </span>  
+    .fm-footer-column a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
 
-        <h3>  
-          Quality Products  
-        </h3>  
+    .fm-footer-bottom {
+      padding-top: 20px;
 
-        <p>  
-          We aim to provide products our customers  
-          can trust.  
-        </p>  
+      border-top:
+        1px solid rgba(255,255,255,.2);
+    }
 
-      </div>  
+    .fm-footer-bottom p {
+      margin: 5px 0;
+    }
 
+    @media (max-width: 800px) {
 
-      <div class="feature">  
+      .fm-footer-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
 
-        <span>  
-          💰  
-        </span>  
+    }
 
-        <h3>  
-          Great Value  
-        </h3>  
+    @media (max-width: 500px) {
 
-        <p>  
-          Find products at competitive prices.  
-        </p>  
+      .fm-footer-grid {
+        grid-template-columns: 1fr;
 
-      </div>  
+        text-align: center;
+      }
 
+    }
 
-      <div class="feature">  
+  </style>
 
-        <span>  
-          🚚  
-        </span>  
+</head>
 
-        <h3>  
-          Convenient Delivery  
-        </h3>  
 
-        <p>  
-          Choose your delivery area and see the  
-          applicable delivery fee and expected date.  
-        </p>  
+<body>
 
-      </div>  
 
+  <!-- =========================================
+       HEADER
+       ========================================= -->
 
-      <div class="feature">  
+  <header class="header">
 
-        <span>  
-          📦  
-        </span>  
+    <div class="container header-content">
 
-        <h3>  
-          Easy Shopping  
-        </h3>  
 
-        <p>  
-          Browse our products and place your order  
-          conveniently.  
-        </p>  
+      <a
+        href="index.html"
+        class="logo"
+      >
+        Famara'smarket
+      </a>
 
-      </div>  
 
+      <nav class="nav">
 
-    </div>  
+        <a href="index.html">
+          Home
+        </a>
 
-  </div>  
+        <a href="pages/shop.html">
+          Shop
+        </a>
 
-</section>  
+        <a href="pages/about.html">
+          About
+        </a>
 
+        <a href="pages/blog.html">
+          Blog
+        </a>
 
+        <a href="pages/gallery.html">
+          Gallery
+        </a>
 
-<!-- ===================================================  
-     HOW SHOPPING WORKS  
-     =================================================== -->  
+        <a href="pages/testimonials.html">
+          Reviews
+        </a>
 
-<section class="categories">  
+        <a href="pages/faq.html">
+          FAQ
+        </a>
 
-  <div class="container">  
+        <a href="pages/contact.html">
+          Contact
+        </a>
 
-    <h2>  
-      How Shopping Works  
-    </h2>  
+      </nav>
 
 
-    <div class="category-grid">  
+      <a
+        href="pages/shop.html"
+        class="fm-cart-button"
+      >
 
+        🛒 Cart
 
-      <div class="category-card">  
+        <span
+          class="fm-cart-count"
+          id="cart-count"
+        >
+          0
+        </span>
 
-        <span>  
-          1️⃣  
-        </span>  
+      </a>
 
-        <h3>  
-          Browse  
-        </h3>  
 
-        <p>  
-          Explore our products and choose what you love.  
-        </p>  
+    </div>
 
-      </div>  
+  </header>
 
 
-      <div class="category-card">  
 
-        <span>  
-          2️⃣  
-        </span>  
+  <!-- =========================================
+       MAIN
+       ========================================= -->
 
-        <h3>  
-          Add to Cart  
-        </h3>  
+  <main>
 
-        <p>  
-          Add your selected products to your shopping cart.  
-        </p>  
 
-      </div>  
+    <!-- =======================================
+         HERO
+         ======================================= -->
 
+    <section class="hero">
 
-      <div class="category-card">  
+      <div class="container hero-content">
 
-        <span>  
-          3️⃣  
-        </span>  
+        <div class="hero-text">
 
-        <h3>  
-          Checkout  
-        </h3>  
+          <p class="welcome">
+            WELCOME TO
+          </p>
 
-        <p>  
-          Enter your delivery details and select your  
-          preferred payment method.  
-        </p>  
 
-      </div>  
+          <h1>
+            Famara'smarket
+          </h1>
 
 
-      <div class="category-card">  
+          <p>
+            Your trusted online marketplace for
+            quality products, great value and
+            convenient shopping across Sierra Leone.
+          </p>
 
-        <span>  
-          4️⃣  
-        </span>  
 
-        <h3>  
-          Receive Your Order  
-        </h3>  
+          <a
+            href="pages/shop.html"
+            class="fm-button"
+          >
+            🛍️ Shop Now
+          </a>
 
-        <p>  
-          Keep your Order ID and use it to track your order.  
-        </p>  
+        </div>
 
-      </div>  
+      </div>
 
+    </section>
 
-    </div>  
 
-  </div>  
 
-</section>  
+    <!-- =======================================
+         CATEGORIES
+         ======================================= -->
 
+    <section class="categories">
 
+      <div class="container">
 
-<!-- ===================================================  
-     CUSTOMER SERVICES  
-     =================================================== -->  
+        <h2>
+          Shop Our Categories
+        </h2>
 
-<section class="why-us">  
 
-  <div class="container">  
+        <div class="category-grid">
 
-    <h2>  
-      Customer Services  
-    </h2>  
 
+          <a
+            href="pages/shop.html"
+            class="category-card"
+          >
 
-    <div class="features">  
+            <span>
+              👗
+            </span>
 
+            <h3>
+              Fashion
+            </h3>
 
-      <div class="feature">  
+            <p>
+              Discover stylish products.
+            </p>
 
-        <span>  
-          📦  
-        </span>  
+          </a>
 
-        <h3>  
-          Track Your Order  
-        </h3>  
 
-        <p>  
-          Check your order status using your Order ID.  
-        </p>  
+          <a
+            href="pages/shop.html"
+            class="category-card"
+          >
 
+            <span>
+              💄
+            </span>
 
-        <a  
-          href="pages/shop.html#trackingSection"  
-          class="fm-button"  
-        >  
-          Track Order  
-        </a>  
+            <h3>
+              Beauty
+            </h3>
 
-      </div>  
+            <p>
+              Beauty and skincare products.
+            </p>
 
+          </a>
 
-      <div class="feature">  
 
-        <span>  
-          ⭐  
-        </span>  
+          <a
+            href="pages/shop.html"
+            class="category-card"
+          >
 
-        <h3>  
-          Customer Reviews  
-        </h3>  
+            <span>
+              🏠
+            </span>
 
-        <p>  
-          Read what other customers have said about  
-          their shopping experience.  
-        </p>  
+            <h3>
+              Home
+            </h3>
 
+            <p>
+              Useful products for your home.
+            </p>
 
-        <a  
-          href="pages/testimonials.html"  
-          class="fm-button"  
-        >  
-          View Reviews  
-        </a>  
+          </a>
 
-      </div>  
 
+          <a
+            href="pages/shop.html"
+            class="category-card"
+          >
 
-      <div class="feature">  
+            <span>
+              🛍️
+            </span>
 
-        <span>  
-          💬  
-        </span>  
+            <h3>
+              Lifestyle
+            </h3>
 
-        <h3>  
-          Need Help?  
-        </h3>  
+            <p>
+              Explore our growing collection.
+            </p>
 
-        <p>  
-          Contact Famara'smarket if you have a question  
-          about your order or our products.  
-        </p>  
+          </a>
 
 
-        <a  
-          href="pages/contact.html"  
-          class="fm-button"  
-        >  
-          Contact Us  
-        </a>  
+        </div>
 
-      </div>  
+      </div>
 
+    </section>
 
-    </div>  
 
-  </div>  
 
-</section>  
+    <!-- =======================================
+         WHY SHOP WITH US
+         ======================================= -->
 
+    <section class="why-us">
 
+      <div class="container">
 
-<!-- ===================================================  
-     LATEST  
-     =================================================== -->  
+        <h2>
+          Why Shop With Famara'smarket?
+        </h2>
 
-<section class="categories">  
 
-  <div class="container">  
+        <div class="features">
 
-    <h2>  
-      Latest From Famara'smarket  
-    </h2>  
 
+          <div class="feature">
 
-    <div class="category-grid">  
+            <span>
+              ✨
+            </span>
 
+            <h3>
+              Quality Products
+            </h3>
 
-      <a  
-        href="pages/blog.html"  
-        class="category-card"  
-      >  
+            <p>
+              We aim to provide products our
+              customers can trust.
+            </p>
 
-        <span>  
-          📰  
-        </span>  
+          </div>
 
-        <h3>  
-          Blog & News  
-        </h3>  
 
-        <p>  
-          Read our latest announcements, updates and  
-          shopping information.  
-        </p>  
+          <div class="feature">
 
-      </a>  
+            <span>
+              💰
+            </span>
 
+            <h3>
+              Great Value
+            </h3>
 
-      <a  
-        href="pages/faq.html"  
-        class="category-card"  
-      >  
+            <p>
+              Find products at competitive prices.
+            </p>
 
-        <span>  
-          ❓  
-        </span>  
+          </div>
 
-        <h3>  
-          Frequently Asked Questions  
-        </h3>  
 
-        <p>  
-          Find answers to common questions about  
-          Famara'smarket.  
-        </p>  
+          <div class="feature">
 
-      </a>  
+            <span>
+              🚚
+            </span>
 
+            <h3>
+              Convenient Delivery
+            </h3>
 
-      <a  
-        href="pages/about.html"  
-        class="category-card"  
-      >  
+            <p>
+              Choose your delivery area and see
+              the applicable delivery fee and
+              expected date.
+            </p>
 
-        <span>  
-          ❤️  
-        </span>  
+          </div>
 
-        <h3>  
-          About Famara'smarket  
-        </h3>  
 
-        <p>  
-          Learn more about our marketplace and what  
-          we stand for.  
-        </p>  
+          <div class="feature">
 
-      </a>  
+            <span>
+              📦
+            </span>
 
+            <h3>
+              Easy Shopping
+            </h3>
 
-      <a  
-        href="pages/contact.html"  
-        class="category-card"  
-      >  
+            <p>
+              Browse our products and place your
+              order conveniently.
+            </p>
 
-        <span>  
-          📞  
-        </span>  
+          </div>
 
-        <h3>  
-          Contact Us  
-        </h3>  
 
-        <p>  
-          Get in touch with Famara'smarket.  
-        </p>  
+        </div>
 
-      </a>  
+      </div>
 
+    </section>
 
-    </div>  
 
-  </div>  
 
-</section>  
+    <!-- =======================================
+         HOW SHOPPING WORKS
+         ======================================= -->
 
+    <section class="categories">
 
+      <div class="container">
 
-<!-- ===================================================  
-     FINAL CTA  
-     =================================================== -->  
+        <h2>
+          How Shopping Works
+        </h2>
 
-<section class="cta">  
 
-  <div class="container">  
+        <div class="category-grid">
 
-    <h2>  
-      Ready to Shop?  
-    </h2>  
 
+          <div class="category-card">
 
-    <p>  
-      Explore Famara'smarket and find something you love.  
-    </p>  
+            <span>
+              1️⃣
+            </span>
 
+            <h3>
+              Browse
+            </h3>
 
-    <a  
-      href="pages/shop.html"  
-      class="fm-button"  
-    >  
-      🛍️ Explore Products  
-    </a>  
+            <p>
+              Explore our products and choose
+              what you love.
+            </p>
 
-  </div>  
+          </div>
 
-</section>
 
-  </main>    <!-- =====================================================  
-       FOOTER  
-       ===================================================== -->    <footer class="footer">  <div class="container">  
+          <div class="category-card">
 
+            <span>
+              2️⃣
+            </span>
 
-  <div class="fm-footer-grid">  
+            <h3>
+              Add to Cart
+            </h3>
 
+            <p>
+              Add your selected products to your
+              shopping cart.
+            </p>
 
-    <div class="fm-footer-column">  
+          </div>
 
-      <h3>  
-        Famara'smarket  
-      </h3>  
 
-      <p>  
-        Your trusted online marketplace for quality  
-        products, great value and convenient shopping.  
-      </p>  
+          <div class="category-card">
 
-    </div>  
+            <span>
+              3️⃣
+            </span>
 
+            <h3>
+              Checkout
+            </h3>
 
-    <div class="fm-footer-column">  
+            <p>
+              Enter your delivery details and
+              select your preferred payment method.
+            </p>
 
-      <h3>  
-        Shop  
-      </h3>  
+          </div>
 
-      <a href="pages/shop.html">  
-        Shop All Products  
-      </a>  
 
-      <a href="pages/shop.html">  
-        Fashion  
-      </a>  
+          <div class="category-card">
 
-      <a href="pages/shop.html">  
-        Beauty  
-      </a>  
+            <span>
+              4️⃣
+            </span>
 
-      <a href="pages/shop.html">  
-        Home  
-      </a>  
+            <h3>
+              Receive Your Order
+            </h3>
 
-      <a href="pages/shop.html">  
-        Lifestyle  
-      </a>  
+            <p>
+              Keep your Order ID and use it to
+              track your order.
+            </p>
 
-    </div>  
+          </div>
 
 
-    <div class="fm-footer-column">  
+        </div>
 
-      <h3>  
-        Customer Service  
-      </h3>  
+      </div>
 
-      <a href="pages/contact.html">  
-        Contact Us  
-      </a>  
+    </section>
 
-      <a href="pages/faq.html">  
-        FAQ  
-      </a>  
 
-      <a href="pages/testimonials.html">  
-        Customer Reviews  
-      </a>  
 
-      <a href="pages/blog.html">  
-        Blog & News  
-      </a>  
+    <!-- =======================================
+         CUSTOMER SERVICES
+         ======================================= -->
 
-      <a href="pages/gallery.html">  
-        Gallery  
-      </a>  
+    <section class="why-us">
 
-    </div>  
+      <div class="container">
 
+        <h2>
+          Customer Services
+        </h2>
 
-    <div class="fm-footer-column">  
 
-      <h3>  
-        Legal  
-      </h3>  
+        <div class="features">
 
-      <a href="pages/privacy.html">  
-        Privacy Policy  
-      </a>  
 
-      <a href="pages/terms.html">  
-        Terms & Conditions  
-      </a>  
+          <div class="feature">
 
-    </div>  
+            <span>
+              📦
+            </span>
 
+            <h3>
+              Track Your Order
+            </h3>
 
-  </div>  
+            <p>
+              Check your order status using your
+              Order ID.
+            </p>
 
 
-  <div class="fm-footer-bottom">  
+            <a
+              href="pages/shop.html#trackingSection"
+              class="fm-button"
+            >
+              Track Order
+            </a>
 
-    <p>  
-      ©  
-      <span id="year"></span>  
-      Famara'smarket.  
-      All rights reserved.  
-    </p>  
+          </div>
 
-    <p>  
-      Quality products. Great value. Easy shopping.  
-    </p>  
 
-  </div>  
+          <div class="feature">
 
+            <span>
+              ⭐
+            </span>
 
-</div>
+            <h3>
+              Customer Reviews
+            </h3>
 
-  </footer>    <!-- =====================================================  
-       JAVASCRIPT  
-       ===================================================== -->    <script src="js/script.js"></script>    <script>  
-  
-    const yearElement =  
-      document.getElementById("year");  
-  
-    if (yearElement) {  
-      yearElement.textContent =  
-        new Date().getFullYear();  
-    }  
-  
-  
-    /*  
-      Keep the cart number updated if the  
-      existing cart uses localStorage.  
-    */  
-  
-    try {  
-  
-      const possibleKeys = [  
-        "famarasmarket_cart",  
-        "cart"  
-      ];  
-  
-      let savedCart = null;  
-  
-      for (const key of possibleKeys) {  
-  
-        const stored =  
-          localStorage.getItem(key);  
-  
-        if (stored) {  
-  
-          try {  
-  
-            const parsed =  
-              JSON.parse(stored);  
-  
-            if (Array.isArray(parsed)) {  
-  
-              savedCart = parsed;  
-              break;  
-  
-            }  
-  
-          } catch (error) {  
-            /* Ignore invalid storage */  
-          }  
-  
-        }  
-  
-      }  
-  
-  
-      if (Array.isArray(savedCart)) {  
-  
-        const count =  
-          savedCart.reduce(  
-            function(total, item) {  
-  
-              return total +  
-                Number(  
-                  item.quantity || 0  
-                );  
-  
-            },  
-            0  
-          );  
-  
-  
-        const cartCount =  
-          document.getElementById(  
-            "cart-count"  
-          );  
-  
-  
-        if (cartCount) {  
-  
-          cartCount.textContent =  
-            count;  
-  
-        }  
-  
-      }  
-  
-    } catch (error) {  
-      /* Cart is handled by the Shop page */  
-    }  
-  
-  </script>  </body>  </html>
+            <p>
+              Read what other customers have said
+              about their shopping experience.
+            </p>
+
+
+            <a
+              href="pages/testimonials.html"
+              class="fm-button"
+            >
+              View Reviews
+            </a>
+
+          </div>
+
+
+          <div class="feature">
+
+            <span>
+              💬
+            </span>
+
+            <h3>
+              Need Help?
+            </h3>
+
+            <p>
+              Contact Famara'smarket if you have
+              a question about your order or products.
+            </p>
+
+
+            <a
+              href="pages/contact.html"
+              class="fm-button"
+            >
+              Contact Us
+            </a>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================
+         LATEST
+         ======================================= -->
+
+    <section class="categories">
+
+      <div class="container">
+
+        <h2>
+          Latest From Famara'smarket
+        </h2>
+
+
+        <div class="category-grid">
+
+
+          <a
+            href="pages/blog.html"
+            class="category-card"
+          >
+
+            <span>
+              📰
+            </span>
+
+            <h3>
+              Blog &amp; News
+            </h3>
+
+            <p>
+              Read our latest announcements,
+              updates and shopping information.
+            </p>
+
+          </a>
+
+
+          <a
+            href="pages/faq.html"
+            class="category-card"
+          >
+
+            <span>
+              ❓
+            </span>
+
+            <h3>
+              Frequently Asked Questions
+            </h3>
+
+            <p>
+              Find answers to common questions
+              about Famara'smarket.
+            </p>
+
+          </a>
+
+
+          <a
+            href="pages/about.html"
+            class="category-card"
+          >
+
+            <span>
+              ❤️
+            </span>
+
+            <h3>
+              About Famara'smarket
+            </h3>
+
+            <p>
+              Learn more about our marketplace
+              and what we stand for.
+            </p>
+
+          </a>
+
+
+          <a
+            href="pages/contact.html"
+            class="category-card"
+          >
+
+            <span>
+              📞
+            </span>
+
+            <h3>
+              Contact Us
+            </h3>
+
+            <p>
+              Get in touch with Famara'smarket.
+            </p>
+
+          </a>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================
+         FINAL CTA
+         ======================================= -->
+
+    <section class="cta">
+
+      <div class="container">
+
+        <h2>
+          Ready to Shop?
+        </h2>
+
+
+        <p>
+          Explore Famara'smarket and find
+          something you love.
+        </p>
+
+
+        <a
+          href="pages/shop.html"
+          class="fm-button"
+        >
+          🛍️ Explore Products
+        </a>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =========================================
+       FOOTER
+       ========================================= -->
+
+  <footer class="footer">
+
+    <div class="container">
+
+
+      <div class="fm-footer-grid">
+
+
+        <div class="fm-footer-column">
+
+          <h3>
+            Famara'smarket
+          </h3>
+
+          <p>
+            Your trusted online marketplace for
+            quality products, great value and
+            convenient shopping.
+          </p>
+
+        </div>
+
+
+        <div class="fm-footer-column">
+
+          <h3>
+            Shop
+          </h3>
+
+          <a href="pages/shop.html">
+            Shop All Products
+          </a>
+
+          <a href="pages/shop.html">
+            Fashion
+          </a>
+
+          <a href="pages/shop.html">
+            Beauty
+          </a>
+
+          <a href="pages/shop.html">
+            Home
+          </a>
+
+          <a href="pages/shop.html">
+            Lifestyle
+          </a>
+
+        </div>
+
+
+        <div class="fm-footer-column">
+
+          <h3>
+            Customer Service
+          </h3>
+
+          <a href="pages/contact.html">
+            Contact Us
+          </a>
+
+          <a href="pages/faq.html">
+            FAQ
+          </a>
+
+          <a href="pages/testimonials.html">
+            Customer Reviews
+          </a>
+
+          <a href="pages/blog.html">
+            Blog &amp; News
+          </a>
+
+          <a href="pages/gallery.html">
+            Gallery
+          </a>
+
+        </div>
+
+
+        <div class="fm-footer-column">
+
+          <h3>
+            Legal
+          </h3>
+
+          <a href="pages/privacy.html">
+            Privacy Policy
+          </a>
+
+          <a href="pages/terms.html">
+            Terms &amp; Conditions
+          </a>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="fm-footer-bottom">
+
+        <p>
+          ©
+          <span id="year"></span>
+          Famara'smarket.
+          All rights reserved.
+        </p>
+
+        <p>
+          Quality products. Great value.
+          Easy shopping.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =========================================
+       JAVASCRIPT
+       ========================================= -->
+
+  <script src="js/script.js"></script>
+
+
+  <script>
+
+    /* Current year */
+
+    const yearElement =
+      document.getElementById("year");
+
+    if (yearElement) {
+
+      yearElement.textContent =
+        new Date().getFullYear();
+
+    }
+
+
+    /* Cart count */
+
+    try {
+
+      const possibleKeys = [
+        "famarasmarket_cart",
+        "cart"
+      ];
+
+
+      let savedCart = null;
+
+
+      for (
+        const key of possibleKeys
+      ) {
+
+        const stored =
+          localStorage.getItem(key);
+
+
+        if (!stored) {
+          continue;
+        }
+
+
+        try {
+
+          const parsed =
+            JSON.parse(stored);
+
+
+          if (
+            Array.isArray(parsed)
+          ) {
+
+            savedCart =
+              parsed;
+
+            break;
+
+          }
+
+        } catch (error) {
+
+          /* Ignore invalid storage */
+
+        }
+
+      }
+
+
+      if (
+        Array.isArray(savedCart)
+      ) {
+
+        const count =
+          savedCart.reduce(
+            function(total, item) {
+
+              return total +
+                Number(
+                  item.quantity || 0
+                );
+
+            },
+            0
+          );
+
+
+        const cartCount =
+          document.getElementById(
+            "cart-count"
+          );
+
+
+        if (cartCount) {
+
+          cartCount.textContent =
+            count;
+
+        }
+
+      }
+
+    } catch (error) {
+
+      /* Cart is handled by Shop */
+
+    }
+
+  </script>
+
+
+</body>
+
+              </html>
