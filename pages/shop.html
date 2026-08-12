@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Shop quality products at Famara'smarket."
+    content="Shop quality fashion, beauty and home products at Famara'smarket."
   >
 
   <link rel="stylesheet" href="../css/style.css">
@@ -31,7 +31,7 @@
         <a href="contact.html">Contact</a>
       </nav>
 
-      <button class="cart-button" type="button">
+      <button class="cart-button" type="button" onclick="showCart()">
         🛒 Cart <span id="cart-count">0</span>
       </button>
 
@@ -39,77 +39,198 @@
   </header>
 
 
-  <!-- SHOP -->
+  <!-- SHOP PAGE -->
   <main>
 
     <section class="page-header">
       <div class="container">
-        <h1>Shop Famara'smarket</h1>
-        <p>Browse our products and find something you love.</p>
+
+        <p class="welcome">FAMARA'SMARKET</p>
+
+        <h1>Shop Our Products</h1>
+
+        <p>
+          Discover quality products at great prices.
+        </p>
+
       </div>
     </section>
 
 
+    <!-- SEARCH AND FILTER -->
+    <section class="shop-tools">
+      <div class="container">
+
+        <input
+          type="search"
+          id="product-search"
+          placeholder="Search products..."
+          oninput="filterProducts()"
+        >
+
+        <select id="category-filter" onchange="filterProducts()">
+          <option value="all">All Categories</option>
+          <option value="Beauty">Beauty</option>
+          <option value="Fashion">Fashion</option>
+          <option value="Home">Home</option>
+        </select>
+
+      </div>
+    </section>
+
+
+    <!-- PRODUCTS -->
     <section class="products-section">
       <div class="container">
 
-        <div class="products-grid">
-
-          <!-- PRODUCT 1 -->
-          <article class="product-card">
-            <div class="product-image">
-              🛍️
-            </div>
-
-            <div class="product-info">
-              <h2>Product Name</h2>
-              <p class="product-category">Fashion</p>
-              <p class="product-price">Le 0</p>
-
-              <button class="button" type="button">
-                Add to Cart
-              </button>
-            </div>
-          </article>
+        <div class="products-grid" id="products-grid">
 
 
-          <!-- PRODUCT 2 -->
-          <article class="product-card">
+          <!-- NIVEA SUNSCREEN -->
+          <article
+            class="product-card"
+            data-name="Nivea Sunscreen"
+            data-category="Beauty"
+          >
+
             <div class="product-image">
               💄
             </div>
 
             <div class="product-info">
-              <h2>Product Name</h2>
-              <p class="product-category">Beauty</p>
-              <p class="product-price">Le 0</p>
 
-              <button class="button" type="button">
+              <p class="product-category">
+                Beauty
+              </p>
+
+              <h2>
+                Nivea Sunscreen
+              </h2>
+
+              <p>
+                Quality sunscreen for everyday skincare.
+              </p>
+
+              <p class="product-price">
+                Le 250
+              </p>
+
+              <button
+                class="button"
+                type="button"
+                onclick="addToCart('Nivea Sunscreen', 250)"
+              >
                 Add to Cart
               </button>
+
             </div>
+
           </article>
 
 
-          <!-- PRODUCT 3 -->
-          <article class="product-card">
+          <!-- LADIES HANDBAG -->
+          <article
+            class="product-card"
+            data-name="Ladies Handbag"
+            data-category="Fashion"
+          >
+
             <div class="product-image">
-              🏠
+              👜
             </div>
 
             <div class="product-info">
-              <h2>Product Name</h2>
-              <p class="product-category">Home</p>
-              <p class="product-price">Le 0</p>
 
-              <button class="button" type="button">
+              <p class="product-category">
+                Fashion
+              </p>
+
+              <h2>
+                Ladies Handbag
+              </h2>
+
+              <p>
+                Stylish handbag for everyday use.
+              </p>
+
+              <p class="product-price">
+                Le 500
+              </p>
+
+              <button
+                class="button"
+                type="button"
+                onclick="addToCart('Ladies Handbag', 500)"
+              >
                 Add to Cart
               </button>
+
             </div>
+
+          </article>
+
+
+          <!-- ELECTRIC KETTLE -->
+          <article
+            class="product-card"
+            data-name="Electric Kettle"
+            data-category="Home"
+          >
+
+            <div class="product-image">
+              🫖
+            </div>
+
+            <div class="product-info">
+
+              <p class="product-category">
+                Home
+              </p>
+
+              <h2>
+                Electric Kettle
+              </h2>
+
+              <p>
+                Convenient kettle for your home.
+              </p>
+
+              <p class="product-price">
+                Le 800
+              </p>
+
+              <button
+                class="button"
+                type="button"
+                onclick="addToCart('Electric Kettle', 800)"
+              >
+                Add to Cart
+              </button>
+
+            </div>
+
           </article>
 
 
         </div>
+
+      </div>
+    </section>
+
+
+    <!-- CART MESSAGE -->
+    <section class="cart-message" id="cart-message">
+      <div class="container">
+
+        <h2>Your Cart</h2>
+
+        <div id="cart-items">
+          Your cart is empty.
+        </div>
+
+        <p id="cart-total">
+          Total: Le 0
+        </p>
 
       </div>
     </section>
