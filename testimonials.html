@@ -1,1 +1,364 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Customer reviews and experiences at Famara'smarket."
+  >
+
+  <title>Customer Reviews | Famara'smarket</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    .reviews-page {
+      padding: 60px 0 80px;
+    }
+
+    .reviews-header {
+      text-align: center;
+      padding: 55px 20px;
+      margin-bottom: 40px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f5f3ff, #fdf2f8);
+    }
+
+    .reviews-header h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      color: #171717;
+      margin-bottom: 12px;
+    }
+
+    .reviews-header p {
+      max-width: 700px;
+      margin: auto;
+      color: #737373;
+    }
+
+    .reviews-list {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .review-card {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    .review-stars {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .review-card h2 {
+      font-size: 1.15rem;
+      margin-bottom: 7px;
+    }
+
+    .review-card p {
+      color: #555;
+    }
+
+    .review-note {
+      text-align: center;
+      margin-top: 35px;
+      color: #737373;
+    }
+
+    .review-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      background: #7c3aed;
+      color: #ffffff;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .review-button:hover {
+      background: #5b21b6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+
+    <div class="container header-content">
+
+      <a href="../index.html" class="logo">
+        Famara'smarket
+      </a>
+
+      <nav class="nav">
+
+        <a href="../index.html">Home</a>
+
+        <a href="shop.html">Shop</a>
+
+        <a href="about.html">About</a>
+
+        <a href="blog.html">Blog</a>
+
+        <a href="gallery.html">Gallery</a>
+
+        <a href="testimonials.html">Reviews</a>
+
+        <a href="faq.html">FAQ</a>
+
+        <a href="contact.html">Contact</a>
+
+      </nav>
+
+      <a href="shop.html" class="cart-button">
+        🛒 Shop
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <main class="reviews-page">
+
+    <div class="container">
+
+      <section class="reviews-header">
+
+        <h1>⭐ Customer Reviews</h1>
+
+        <p>
+          See what customers have shared about
+          their Famara'smarket shopping experience.
+        </p>
+
+      </section>
+
+
+      <section class="reviews-list">
+
+        <div
+          id="reviewsContainer"
+        ></div>
+
+      </section>
+
+
+      <div class="review-note">
+
+        <p>
+          Have you received your order?
+          We would love to hear about your experience.
+        </p>
+
+        <a
+          href="shop.html#trackingSection"
+          class="review-button"
+        >
+          📦 Track Your Order
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <footer class="footer">
+
+    <div class="container">
+
+      <p>
+        © <span id="year"></span>
+        Famara'smarket. All rights reserved.
+      </p>
+
+      <p>
+        Quality products. Great value. Easy shopping.
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    function escapeHTML(value) {
+
+      return String(value ?? "")
+        .replace(
+          /[&<>"']/g,
+          function(character) {
+
+            const map = {
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;"
+            };
+
+            return map[character];
+
+          }
+        );
+
+    }
+
+
+    function loadReviews() {
+
+      const container =
+        document.getElementById(
+          "reviewsContainer"
+        );
+
+
+      let reviews = [];
+
+
+      try {
+
+        const saved =
+          localStorage.getItem(
+            "famarasmarket_reviews"
+          );
+
+
+        reviews =
+          saved
+            ? JSON.parse(saved)
+            : [];
+
+
+        if (!Array.isArray(reviews)) {
+          reviews = [];
+        }
+
+      } catch (error) {
+
+        reviews = [];
+
+      }
+
+
+      container.innerHTML = "";
+
+
+      if (!reviews.length) {
+
+        container.innerHTML = `
+
+          <div class="review-card">
+
+            <div class="review-stars">
+              ⭐⭐⭐⭐⭐
+            </div>
+
+            <h2>
+              No customer reviews yet
+            </h2>
+
+            <p>
+              Customer reviews will appear here
+              after customers submit their feedback.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      reviews
+        .slice()
+        .reverse()
+        .forEach(
+          function(review) {
+
+            const rating =
+              Math.max(
+                1,
+                Math.min(
+                  5,
+                  Number(
+                    review.rating || 5
+                  )
+                )
+              );
+
+
+            const card =
+              document.createElement(
+                "article"
+              );
+
+
+            card.className =
+              "review-card";
+
+
+            card.innerHTML = `
+
+              <div class="review-stars">
+                ${"⭐".repeat(rating)}
+              </div>
+
+              <h2>
+                ${escapeHTML(
+                  review.name || "Customer"
+                )}
+              </h2>
+
+              <p>
+                <strong>
+                  ${escapeHTML(
+                    review.productName || "Product"
+                  )}
+                </strong>
+              </p>
+
+              <p>
+                ${escapeHTML(
+                  review.text || ""
+                )}
+              </p>
+
+            `;
+
+
+            container.appendChild(
+              card
+            );
+
+          }
+        );
+
+    }
+
+
+    loadReviews();
+
+  </script>
+
+</body>
+</html>
