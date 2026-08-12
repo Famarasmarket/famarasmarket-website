@@ -1,1 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <meta
+    name="description"
+    content="Famara'smarket blog and latest shopping updates."
+  >
+
+  <title>Blog | Famara'smarket</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    .blog-page {
+      padding: 60px 0 80px;
+    }
+
+    .blog-header {
+      text-align: center;
+      padding: 55px 20px;
+      margin-bottom: 40px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f5f3ff, #fdf2f8);
+    }
+
+    .blog-header h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      color: #171717;
+      margin-bottom: 12px;
+    }
+
+    .blog-header p {
+      max-width: 700px;
+      margin: auto;
+      color: #737373;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .blog-card {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    .blog-icon {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+    }
+
+    .blog-card h2 {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
+
+    .blog-card p {
+      color: #737373;
+      margin-bottom: 15px;
+    }
+
+    .blog-date {
+      color: #7c3aed;
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    .blog-button {
+      display: inline-block;
+      margin-top: 35px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      background: #7c3aed;
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    @media (max-width: 800px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container header-content">
+
+      <a href="../index.html" class="logo">
+        Famara'smarket
+      </a>
+
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="testimonials.html">Reviews</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <a href="shop.html" class="cart-button">
+        🛒 Shop
+      </a>
+
+    </div>
+  </header>
+
+  <main class="blog-page">
+
+    <div class="container">
+
+      <section class="blog-header">
+
+        <h1>Blog & News</h1>
+
+        <p>
+          Stay updated with Famara'smarket news,
+          shopping information, announcements and useful tips.
+        </p>
+
+      </section>
+
+      <section class="blog-grid">
+
+        <article class="blog-card">
+
+          <div class="blog-icon">🛍️</div>
+
+          <div class="blog-date">
+            FAMARA'SMARKET
+          </div>
+
+          <h2>Welcome to Famara'smarket</h2>
+
+          <p>
+            Discover a convenient way to browse quality
+            products and place your orders online.
+          </p>
+
+        </article>
+
+        <article class="blog-card">
+
+          <div class="blog-icon">🚚</div>
+
+          <div class="blog-date">
+            DELIVERY
+          </div>
+
+          <h2>Convenient Delivery</h2>
+
+          <p>
+            Select your delivery region and area during
+            checkout to see the applicable delivery fee
+            and expected delivery date.
+          </p>
+
+        </article>
+
+        <article class="blog-card">
+
+          <div class="blog-icon">💳</div>
+
+          <div class="blog-date">
+            PAYMENT
+          </div>
+
+          <h2>Payment Options</h2>
+
+          <p>
+            Customers can choose from the available
+            payment methods during checkout and provide
+            their payment reference when applicable.
+          </p>
+
+        </article>
+
+        <article class="blog-card">
+
+          <div class="blog-icon">📦</div>
+
+          <div class="blog-date">
+            ORDERS
+          </div>
+
+          <h2>Track Your Order</h2>
+
+          <p>
+            Keep your Order ID after placing an order.
+            You can use it to check your order status.
+          </p>
+
+        </article>
+
+        <article class="blog-card">
+
+          <div class="blog-icon">⭐</div>
+
+          <div class="blog-date">
+            COMMUNITY
+          </div>
+
+          <h2>Customer Reviews</h2>
+
+          <p>
+            Your feedback helps us improve the Famara'smarket
+            shopping experience.
+          </p>
+
+        </article>
+
+        <article class="blog-card">
+
+          <div class="blog-icon">❤️</div>
+
+          <div class="blog-date">
+            OUR PROMISE
+          </div>
+
+          <h2>Quality & Convenience</h2>
+
+          <p>
+            We aim to provide quality products, great value
+            and a convenient shopping experience.
+          </p>
+
+        </article>
+
+      </section>
+
+      <div style="text-align:center;">
+        <a href="shop.html" class="blog-button">
+          🛍️ Shop Now
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+
+    <div class="container">
+
+      <p>
+        © <span id="year"></span>
+        Famara'smarket. All rights reserved.
+      </p>
+
+      <p>
+        Quality products. Great value. Easy shopping.
+      </p>
+
+    </div>
+
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
